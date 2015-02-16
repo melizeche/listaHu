@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*.pyc
 
 # C extensions
 *.so
@@ -52,3 +53,12 @@ docs/_build/
 
 # PyBuilder
 target/
+
+#mine
+backend/migrations/
+db.sqlite3
+listahu/settings.py
+media/
+
+
+
