@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+{% load staticfiles %}
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Lista negra de numeros de Spam y estafas">
+
+    <title>{% block title %}Lista Hũ{% endblock %}</title>
+
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<!-- <link rel="stylesheet" href="/static/css/pure-skin-dark.css"> -->
+<link rel="stylesheet" href="/static/css/pure-skin-light.css">
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="/static/css/layouts/side-menu.css">
+    <!--<![endif]-->
+  
+</head>
+<body>
+
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+
+    <div id="menu">
+        <div class="pure-menu pure-menu-open">
+            <a class="pure-menu-heading" href="/#">Lista Hũ</a>
+            {% block menu %}
+            <ul>
+                <li><a href="/#que">¿Qué es?</a></li>
+                <li><a href="/#idea">Idea</a></li>
+                <li><a href="/#denuncia">Denunciá</a></li>
+                <li><a href="/#ejemplos">Ejemplos</a></li>
+
+                <li class="menu-item-divided pure-menu-selected">
+                    <a href="#">Más Info</a>
+                </li>
+                <li><a href="#">API</a></li>
+                <li><a href="#">Contacto</a></li>
+                <li><a href="#">FAQ</a></li>
+            </ul>
+            {% endblock %}
+        </div>
+    </div>
+
+    <div id="main">
+        <div class="content">
+        {% block content %}
+        {% endblock %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="/static/js/ui.js"></script>
+
+
+</body>
+</html>

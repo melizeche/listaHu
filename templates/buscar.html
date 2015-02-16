@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Lista Hũ - Resultados de busqueda{% endblock %}
+
+{% block content %}
+<h2>{{ msg }}</h2>
+{% for entry in numeros %}
+    <div class="pure-u-1-4">
+    <h2>{{ entry.numero }}</h2>
+    <p>{{ entry.tipo }}</p>
+    
+    <p> <a href="/media/{{ entry.screenshot }}" target="_blank"> <img class="pure-img-responsive" src="/media/{{ entry.screenshot }}" /></a></p>
+    
+    <p>{{ entry.added }}</p>
+    </div>
+{% endfor %}
+{% endblock %}
