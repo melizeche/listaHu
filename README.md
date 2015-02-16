@@ -12,7 +12,7 @@
 
 ##Instalación
 
-`git clone`
+`git clone git@github.com:melizeche/listahu.git`
 
 `virtualenv env`
 
@@ -20,7 +20,9 @@
 
 `pip install -r requirements.txt`
 
-`./manage.py makemigrations`
+Configurar listahu/settings.py
+
+`./manage.py makemigrations backend`
 
 `./manage.py migrate`
 

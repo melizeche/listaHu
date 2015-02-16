@@ -11,6 +11,7 @@ router.register(r'users', views.UserViewSet)
 router.register(r'denuncias', views.DenunciaViewSet)
 router.register(r'lista', views.ListaViewSet)
 
+admin.site.site_header = 'Administrador de denuncias'
 
 urlpatterns = patterns('',
     # Examples:
