@@ -74,6 +74,6 @@ def buscar(request,numero):
 def download(request):
 	lista = Denuncia.objects.all()
 	vc = vcard("Todos", lista)
-	response = HttpResponse(vc, content_type='text/vcard')
+	response = HttpResponse(vc, content_type='application/octet-stream')
 	response['Content-Disposition'] = 'attachment; filename="LISTA_NEGRA.VCF"'
 	return response
