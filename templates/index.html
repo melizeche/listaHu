@@ -2,56 +2,57 @@
 {% block title %}Lista Hũ{% endblock %}
 
 {% block content %}
-<h2>{{ msg }}</h2>
+
 <div class="content">
-            <a name="que"></a> <h2 class="content-subhead">¿Qué es?</h2>
+            <a id="que"></a> <h2 class="content-subhead">¿Qué es?</h2>
             <p>
                 Este proyecto nace para crear una base de datos de mensajes y llamadas no deseadas, sean SPAM, extorsión o estafa, para identificar y eventualmente para poder bloquearlos.
             </p>
 
-            <a name="idea"></a><h2 class="content-subhead" >La idea</h2>
+            <a id="idea"></a><h2 class="content-subhead" >La idea</h2>
             <p>
                 Como cada día hay noticias de estafas, extorsiones y otros crímenes realizados a través de mensajes o llamadas 
             </p>
-            <a name="denuncia"></a>
+            <a id="denuncia"></a>
             <div class="borde">
             <h2 >Denunciá</h2>
-            <p>
+            
                 <form action="/" method="post" class="pure-form pure-form-stacked" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form.as_p }} 
-                <input type="submit" value="Enviar" />
+                <input type="submit" value="Enviar denuncia" />
                 </form>
+                <p></p>
 
-            </p>
+            
             </div>
-            <a name="ejemplos"><h2 class="content-subhead">Ejemplos</h2>
+            <a id="ejemplos"></a><h2 class="content-subhead">Ejemplos</h2>
             <div class="pure-g">
                 <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="/static/imgs/d1.jpg" />
+                    <img class="pure-img-responsive" src="/static/imgs/d1.jpg" alt />
                 </div>
                 <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="/static/imgs/d2.jpg" />
+                    <img class="pure-img-responsive" src="/static/imgs/d2.jpg" alt />
                 </div>
                 <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="/static/imgs/d3.jpg" />
+                    <img class="pure-img-responsive" src="/static/imgs/d3.jpg" alt />
                 </div>
                 <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="/static/imgs/d4.png" />
+                    <img class="pure-img-responsive" src="/static/imgs/d4.png" alt />
                 </div>
             </div>
             <div class="pure-g">
                 <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="/static/imgs/d6.jpg" />
+                    <img class="pure-img-responsive" src="/static/imgs/d6.jpg" alt />
                 </div>
                 <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="/static/imgs/d5.jpg" />
+                    <img class="pure-img-responsive" src="/static/imgs/d5.jpg" alt />
                 </div>
                 <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="/static/imgs/d8.png" />
+                    <img class="pure-img-responsive" src="/static/imgs/d8.png" alt />
                 </div>
                 <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="/static/imgs/d7.jpg" />
+                    <img class="pure-img-responsive" src="/static/imgs/d7.jpg" alt />
                 </div>
             </div>
 
