@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 import vobject
+import csv, datetime, unicodedata, cStringIO
+from django.utils import timezone
 
 def validateNumber(number):
 
@@ -11,6 +13,15 @@ def validateNumber(number):
 			new = number
 
 		return new
+
+def getCSV(datos):
+	si = cStringIO.StringIO()    
+	writer = csv.writer(si,dialect='excel')
+	writer.writerow(['#', 'Numero', 'Tipo', 'Comentarios','Captura','Fecha_Denuncia'])
+	for count,fila in enumerate(datos):
+		writer.writerow([count+1, fila.numero, unicodedata.normalize('NFKD', fila.tipo.titulo).encode('ASCII', 'ignore'), 
+				unicodedata.normalize('NFKD', fila.desc).encode('ASCII', 'ignore'), 'http://listahu.org/media/%s' % fila.screenshot, fila.added.astimezone(timezone.get_current_timezone()).strftime("%Y/%m/%d %H:%M")])
+	return si.getvalue()
 
 def vcard(name,lista):
 

@@ -1,16 +1,25 @@
 # -*- encoding: utf-8 -*-
 from django.db import models
 import os, time
+from django.db.models.signals import post_save, pre_save
 # Create your models here.
 
 def rename(instance, filename):
-	print instance.numero
+	#print instance.numero
 	path = "denuncias/"
 	if not instance.numero:
 		format = time.strftime("%Y%m%d%H%M",time.localtime()) + "-" + filename
 	else:
 		format = str(instance.numero) +  "_" + time.strftime("%Y%m%d%H%M",time.localtime()) + "_" + filename
 	return os.path.join(path, format)
+
+class Estadistica(models.Model):
+	nombre		= models.CharField("Titulo de la Estadistica", max_length=30)
+	valor	 	= models.IntegerField(null=True, blank=True, default=0)
+	otro		= models.CharField(max_length=200, null=True, blank=True)
+
+	def __unicode__(self):
+		return self.nombre
 
 class Tipo(models.Model):
 	titulo 	= models.CharField(max_length=30)
@@ -47,13 +56,29 @@ class Denuncia(models.Model):
 			return new
 
 	def save(self, *args, **kwargs):
-	 	print "entre 1"
-	 	print self.numero
-	 	self.numero = self.validateNumber(self.numero)
-	 	super(Denuncia, self).save(*args, **kwargs)
+		#print "entre 1"
+		#print self.numero
+		self.numero = self.validateNumber(self.numero)
+		super(Denuncia, self).save(*args, **kwargs)
 
 	def __unicode__(self):
 		return self.numero + " - " + unicode(self.tipo)
 	
+def update_stats(sender, instance, created, **kwargs):  
+	try:
+		cant = Estadistica.objects.get(nombre='denuncias')
+	except Estadistica.DoesNotExist:
+		cant = None
+	
+	if cant:
+		cant.valor +=  1
+		cant.save()
+
+	else:
+		cant = Denuncia.objects.all().count()
+		a = Estadistica(nombre="denuncias",valor=cant)
+		a.save()
+
+post_save.connect(update_stats, sender=Denuncia) 
 
 

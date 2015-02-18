@@ -15,12 +15,12 @@
 <div id="columns">
 {% for entry in numeros %}
 
-    <div class="pure-u-1-4" style="margin-right:1em">
+    <div class="pure-u-1-4" style="margin-right:1em" title="{{entry.desc}}">
     <figure>
     <label>Número: </label>
     {{ entry.numero }}
     
-     <a href="/media/{{ entry.screenshot }}" target="_blank"> <img class="pure-img-responsive" src="/media/{{ entry.screenshot }}" alt /></a>
+     <a href="/media/{{ entry.screenshot }}" target="_blank"> <img class="pure-img-responsive" src="/media/{{ entry.screenshot }}"  alt="{{entry.desc}}"/></a>
 	
     <figcaption>
     <label>Tipo: </label>{{ entry.tipo }}

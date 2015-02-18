@@ -59,6 +59,4 @@ backend/migrations/
 db.sqlite3
 listahu/settings.py
 media/
-
-
-
+gunicorn_start.sh

@@ -7,11 +7,11 @@ from django.core.servers.basehttp import FileWrapper
 from rest_framework import viewsets, filters, generics
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, DjangoModelPermissions, DjangoObjectPermissions, IsAdminUser, AllowAny
-from serializers import UserSerializer, DenunciaSerializer
-from backend.models import Denuncia
+from serializers import UserSerializer, DenunciaSerializer, ListaSerializer
+from backend.models import Denuncia, Estadistica
 from forms import DenunciaForm
-from extras import validateNumber, vcard
-
+from extras import validateNumber, vcard, getCSV
+import time
 # Create your views here.
 
 # class UserViewSet(viewsets.ModelViewSet):
@@ -30,7 +30,7 @@ class DenunciaViewSet(viewsets.ModelViewSet):
 class ListaViewSet(viewsets.ModelViewSet):
 	permission_classes = [IsAuthenticatedOrReadOnly] 
 	queryset 			= Denuncia.objects.all()
-	serializer_class 	= DenunciaSerializer
+	serializer_class 	= ListaSerializer
 
 	def list(self, request):
 		queryset = Denuncia.objects.all()
@@ -54,7 +54,12 @@ def home(request):
 		print "else"
 		#print form
 		form = DenunciaForm()
-	return render(request, 'index.html', {'form': form})
+	try:
+		cant = Estadistica.objects.get(nombre='denuncias').valor
+	except Estadistica.DoesNotExist:
+		cant = ""
+
+	return render(request, 'index.html', {'form': form,'denuncias':cant})
 
 	return HttpResponse("AAAAAAAAAAA")
 
@@ -77,13 +82,25 @@ def buscar(request,**kargs):
 		return render(request, 'buscar.html', {'numeros': query, 'msg':msg})
 
 
-def download(request):
-	lista = Denuncia.objects.all()
-	vc = str(vcard("Todos", lista))
-	#response = HttpResponse(vc, content_type='application/octet-stream')
-	response = HttpResponse(vc, content_type='text/vcard')
-	response['Content-Disposition'] = 'attachment; filename="LISTA_NEGRA.VCF"'
-	return response
+
+def download(request, **kwargs):
+	print kwargs
+	if 'formato' in kwargs:
+		formato = kwargs['formato']
+		lista = Denuncia.objects.all()
+		if formato=='csv':
+			archi = getCSV(lista)
+			response = HttpResponse(archi,content_type='text/csv')
+			response['Content-Disposition'] = 'attachment; filename="LISTA_HU_%s.csv"' % (time.strftime("%Y-%m-%d",time.localtime()))
+			return response
+		elif formato=='vcard':
+			vc = str(vcard("Todos", lista))
+			response = HttpResponse(vc, content_type='text/vcard')
+			response['Content-Disposition'] = 'attachment; filename="LISTA_HU_%s.VCF"' % (time.strftime("%Y-%m-%d",time.localtime()))
+			return HttpResponse('vCard')
+
+	
+	return HttpResponse("descargar/csv y eso")
 
 def denuncia(request):
 
