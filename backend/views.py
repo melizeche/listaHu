@@ -23,7 +23,7 @@ import time
 
 class DenunciaViewSet(viewsets.ModelViewSet):
 	permission_classes = [IsAuthenticatedOrReadOnly] 
-	queryset 			= Denuncia.objects.all()
+	queryset 			= Denuncia.objects.all().order_by('-added')
 	serializer_class 	= DenunciaSerializer
 	filter_fields 		= ('id','tipo','numero','check')
 
@@ -122,4 +122,4 @@ def denuncia(request):
 	return render(request, 'denuncia.html', {'form': form})
 
 def navegar(request):
-	return render(request, 'navegar.html',{'msg':"NAV"})
+	return render(request, 'navegar.html',{'msg':"Navegá la lista"})
