@@ -97,10 +97,10 @@ def download(request, **kwargs):
 			vc = str(vcard("Todos", lista))
 			response = HttpResponse(vc, content_type='text/vcard')
 			response['Content-Disposition'] = 'attachment; filename="LISTA_HU_%s.VCF"' % (time.strftime("%Y-%m-%d",time.localtime()))
-			return HttpResponse('vCard')
+			return response
 
 	
-	return HttpResponse("descargar/csv y eso")
+	return HttpResponse("<h2>Descargar:</h2><a href='vcard'>vCard</a><br><a href='csv'>CSV</a>")
 
 def denuncia(request):
 
