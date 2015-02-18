@@ -727,7 +727,8 @@ striping:
 .pure-skin-light .pure-menu-can-have-children > .pure-menu-label:after {
     content: '\25B8';
     float: right;
-    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'DejaVu Sans', sans-serif; /* These specific fonts have the Unicode char we need. */
+    font-family: 'Roboto', sans-serif;
+    /*font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'DejaVu Sans', sans-serif; /* These specific fonts have the Unicode char we need. */
     margin-right: -20px;
     margin-top: -1px;
 }
