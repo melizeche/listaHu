@@ -4,14 +4,32 @@
 
 {% block content %}
 <h2>{{ msg }}</h2>
+
+ <form method="get" action="/buscar/" onsubmit="return false;" class='pure-form' id="buscar">
+    <input type="search" name="q" value="" placeholder="0981XXXXXX" class='pure-input-1-2'/>    
+    <button type="submit" onclick="window.location.href=this.form.action + this.form.q.value;" value="Buscar" class='button-large pure-button'/>
+     <i class="fa fa-search-plus fa-lg"></i> Buscar
+    </button>
+</form>
+<!-- <div class="pure-g"> -->
+<div id="columns">
 {% for entry in numeros %}
-    <div class="pure-u-1-4">
-    <h2>{{ entry.numero }}</h2>
-    <p>{{ entry.tipo }}</p>
+
+    <div class="pure-u-1-4" style="margin-right:1em">
+    <figure>
+    <label>Número: </label>
+    {{ entry.numero }}
     
-    <p> <a href="/media/{{ entry.screenshot }}" target="_blank"> <img class="pure-img-responsive" src="/media/{{ entry.screenshot }}" /></a></p>
-    
-    <p>{{ entry.added }}</p>
+     <a href="/media/{{ entry.screenshot }}" target="_blank"> <img class="pure-img-responsive" src="/media/{{ entry.screenshot }}" alt /></a>
+	
+    <figcaption>
+    <label>Tipo: </label>{{ entry.tipo }}
+    <label>Agregado: </label>{{ entry.added }}
+    </figcaption>
+    </figure>
     </div>
+
 {% endfor %}
+</div>
+<!-- </div> -->
 {% endblock %}

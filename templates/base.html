@@ -7,7 +7,7 @@
 <meta name="description" content="Lista negra de numeros de Spam y estafas">
 
     <title>{% block title %}Lista Hũ{% endblock %}</title>
-
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 <!-- <link rel="stylesheet" href="/static/css/pure-skin-dark.css"> -->
 <link rel="stylesheet" href="/static/css/pure-skin-light.css">
@@ -16,8 +16,9 @@
     <![endif]-->
     <!--[if gt IE 8]><!-->
         <link rel="stylesheet" href="/static/css/layouts/side-menu.css">
+
     <!--<![endif]-->
-  
+<link rel="shortcut icon" href="/static/favicon.ico" />  
 </head>
 <body>
 
@@ -30,33 +31,52 @@
 
     <div id="menu">
         <div class="pure-menu pure-menu-open">
-            <a class="pure-menu-heading" href="/#">Lista Hũ</a>
+            <a class="pure-menu-heading" href="/#"><i class="fa fa-ban fa-lg"></i> Lista Hũ</a>
             {% block menu %}
             <ul>
                 <li><a href="/#que">¿Qué es?</a></li>
                 <li><a href="/#idea">Idea</a></li>
                 <li><a href="/#denuncia">Denunciá</a></li>
                 <li><a href="/#ejemplos">Ejemplos</a></li>
-
                 <li class="menu-item-divided pure-menu-selected">
-                    <a href="#">Más Info</a>
+                    <a href="#"><i class="fa fa-info-circle fa-lg"></i> Más Info</a>
                 </li>
                 <li><a href="#">API</a></li>
                 <li><a href="#">Contacto</a></li>
                 <li><a href="#">FAQ</a></li>
+
+
+                <li class="menu-item-divided pure-menu-selected">
+                    <a href="/buscar"><i class="fa fa-search-plus fa-lg"></i> Buscar numero</a>
+                </li>
+                <form method="get" action="/buscar/" onsubmit="return false;" class='pure-form'>
+                    <input type="search" name="q" value="" placeholder="Ej. 0981XXXXXX" class='pure-input-1'/>
+                    <input type="submit" style="position: absolute; left: -9999px" onclick="window.location.href=this.form.action + this.form.q.value;" value="Buscar" class='button-large pure-button'/>
+                </form>
+
+
             </ul>
             {% endblock %}
+            
+
         </div>
     </div>
 
     <div id="main">
+        <div class="header">
+            <h1><i class="fa fa-ban fa-lg"></i> Lista Hũ</h1>
+            <h2>Denunciá los mensajes y llamadas no deseadas</h2>
+        </div>
         <div class="content">
         {% block content %}
         {% endblock %}
         </div>
     </div>
-</div>
 
+</div>
+<footer>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Dataset" property="dct:title" rel="dct:type">Los datos de Lista Hũ</span> estan distribuido bajo la<br> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Licencia Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional</a>.
+</footer>>
 
 
 

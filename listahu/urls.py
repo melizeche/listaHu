@@ -7,7 +7,7 @@ from backend import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
+#router.register(r'users', views.UserViewSet)
 router.register(r'denuncias', views.DenunciaViewSet)
 router.register(r'lista', views.ListaViewSet)
 
@@ -18,6 +18,8 @@ urlpatterns = patterns('',
     url(r'^$', 'backend.views.home', name='home'),
     #url(r'^$', 'backend.views.buscar', name='home'),
     url(r'^buscar/(?P<numero>.+)/$', views.buscar, name='buscar'),
+    url(r'^buscar/$', views.buscar, name='buscar'),
+    url(r'^denuncia/$', views.denuncia, name='denuncia'),
     url(r'^descargar/$', views.download, name='descargar'),
     # url(r'^blog/', include('blog.urls')),
     url(r'^api/v1/', include(router.urls)),
