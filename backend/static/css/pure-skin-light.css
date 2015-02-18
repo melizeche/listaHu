@@ -727,7 +727,7 @@ striping:
 .pure-skin-light .pure-menu-can-have-children > .pure-menu-label:after {
     content: '\25B8';
     float: right;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
     /*font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'DejaVu Sans', sans-serif; /* These specific fonts have the Unicode char we need. */
     margin-right: -20px;
     margin-top: -1px;
@@ -866,6 +866,7 @@ margin: 7px 2px;
 /* remove borders for horizontal menus */
 .pure-skin-light .pure-menu.pure-menu-horizontal,
 .pure-skin-light .pure-menu.pure-menu-horizontal .pure-menu-heading {
+    font-family: 'Roboto Condensed', sans-serif;
     border: none;
 }
 

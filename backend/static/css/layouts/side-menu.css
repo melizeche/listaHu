@@ -303,3 +303,10 @@ footer {
  height: 3em;
  margin-top: -3em;
 }
+p {
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+html, button, input, select, textarea {
+    font-family: 'Roboto Condensed', sans-serif;
+}
