@@ -120,3 +120,6 @@ def denuncia(request):
 		#print form
 		form = DenunciaForm()
 	return render(request, 'denuncia.html', {'form': form})
+
+def navegar(request):
+	return render(request, 'navegar.html',{'msg':"NAV"})

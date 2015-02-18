@@ -310,3 +310,23 @@ p {
 html, button, input, select, textarea {
     font-family: 'Roboto Condensed', sans-serif;
 }
+.negro{
+ color: black;   
+}
+
+.fondo {
+  background-image: url(/static/bg-2.jpg);
+  background-position: center top;
+  background-size: cover;
+  -webkit-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+  -mox-box-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  -webkit-flex: 1 0 auto;
+  flex: 1 0 auto;
+  min-height: 100%;
+  min-width: 100%;
+  position: fixed;
+  z-index: 0;
+}

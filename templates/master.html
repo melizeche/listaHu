@@ -22,7 +22,7 @@
 <link rel="shortcut icon" href="/static/favicon.ico" />  
 </head>
 <body>
-
+<!-- <div class="fondo"></div> -->
 <div id="layout">
     <!-- Menu toggle -->
     <a href="#menu" id="menuLink" class="menu-link">
@@ -67,6 +67,7 @@
     </div>
 
     <div id="main">
+
         <div class="header">
             <h1><i class="fa fa-ban fa-lg"></i> Lista Hũ</h1>
             <h2>Denunciá los mensajes y llamadas no deseadas</h2>
@@ -88,7 +89,18 @@ están distribuidos bajo la<br><a rel="license" href="http://creativecommons.org
 <br><a href="https://github.com/melizeche/listahu" target="_blank"><i class="fa fa-github-alt"></i>Revisa el código en GitHub</a
 </footer>
 <script src="/static/js/ui.js"></script>
+<!-- Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+  ga('create', 'UA-59895974-1', 'auto');
+  ga('send', 'pageview');
+  ga(‘set’, ‘&uid’, {{USER_ID}}); // Set the user ID using signed-in user_id.
+
+</script>
 
 </body>
 </html>
