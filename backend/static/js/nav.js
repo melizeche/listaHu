@@ -20,19 +20,22 @@ function load_posts(url) {
         success : function(json) {
         	results = json.results
         	total = json.count;
-        	console.log(json.next);
+        	//console.log(json.next);
         	cant = cant + results.length;
         	next=json.next;
             for (var i = 0; i < results.length; i++) {
-                console.log(results[i]);
+                //console.log(results[i]);
                 dateString = convert_to_readable_date(results[i].added);
                 if(! results[i].desc){ results[i].desc=results[i].numero;}
-                $("#denuncias").append('<div class="pure-u-1-4" style="margin-right:1em" title="Denuncia #'+results[i].id+'"> <figure><label>Número:'+results[i].numero+'</label> <label> Tipo:'+results[i].tipo+'</label> <img src="'+results[i].screenshot+'"> <figcaption>'+ dateString+'</figcaption></figure>');
-            }
+                if(screen.width<768){
+                	$("#denuncias").append('<div class="pure-u-1-2" style="margin-right:1em" title="Denuncia #'+results[i].id+'"> <figure><label>Número:'+results[i].numero+'</label> <label> Tipo:'+results[i].tipo+'</label> <a href="'+results[i].screenshot+'" target="_blank"><img src="'+results[i].screenshot+'"></a> <figcaption>'+ dateString+'</figcaption></figure>');	
+                }else{
+                	$("#denuncias").append('<div class="pure-u-1-4" style="margin-right:1em" title="Denuncia #'+results[i].id+'"> <figure><label>Número:'+results[i].numero+'</label> <label> Tipo:'+results[i].tipo+'</label> <a href="'+results[i].screenshot+'" target="_blank"><img src="'+results[i].screenshot+'"></a> <figcaption>'+ dateString+'</figcaption></figure>');
+            }	}
             console.log(next);
             $("#canti").html("Se obtuvieron " +cant+" de "+ total + " denuncias");
             if (!next){
-            	console.log('aaaa');
+            	//console.log('aaaa');
             	$("#botmas").prop('disabled', true);
             	$("#botmas").prop('title', 'No hay mas resultados para cargar');
             }else{

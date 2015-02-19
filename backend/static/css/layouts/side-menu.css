@@ -237,6 +237,14 @@ Hides the menu at `48em`, but modify this based on your app's needs.
     #layout.active .menu-link {
         left: 150px;
     }
+
+    #columns {
+    column-width:100%;
+    column-gap: 15px;
+    width: 100%;
+    max-width: 100%;
+    margin: 50px auto;
+    }
 }
 .helptext{
     font-size: 0.8em;
@@ -270,6 +278,7 @@ width: 90%;
 max-width: 1100px;
 margin: 50px auto;
 }
+
 
 div#columns figure {
 background: #fefefe;

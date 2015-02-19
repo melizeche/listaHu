@@ -15,23 +15,7 @@
 <div id="denuncias"></div>
 <div id="mas"><p> <label id="canti"></label></p>
 <button id="botmas" class="pure-input-1 button-xlarge pure-button" style="width:100%;"  onclick="load_posts(next)">Cargar Más</button></div>
-{% for entry in numeros %}
 
-    <div class="pure-u-1-4" style="margin-right:1em" title="{{entry.desc}}">
-    <figure>
-    <label>Número: </label>
-    {{ entry.numero }}
-    
-     <a href="/media/{{ entry.screenshot }}" target="_blank"> <img class="pure-img-responsive" src="/media/{{ entry.screenshot }}"  alt="{{entry.desc}}"/></a>
-	
-    <figcaption>
-    <label>Tipo: </label>{{ entry.tipo }}
-    <label>Agregado: </label>{{ entry.added }}
-    </figcaption>
-    </figure>
-    </div>
-
-{% endfor %}
 </div>
 <!-- </div> -->
 {% endblock %}

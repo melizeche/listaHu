@@ -18,14 +18,17 @@ Configurar listahu/settings.py
 `./manage.py createsuperuser`
 
 #Opcional
+
+Se recomienda PostgreSQL pero se puede utilizar cualquier base de datos soportada por Django(ej. MySQL, SQLite) 
+
 ##Paquetes necesarios (Ubuntu/Debian)
 
 `apt-get install postgresql-9.3 postgresql-contrib-9.3 postgresql-server-dev-9.3 python-dev python-pip python-virtualenv git`
 
-##Configuracion de la base de datos
+##Configuracion rápida PostgreSQL
 
-`sudo -u postgres psql`
+`sudo -u postgres psql;`
 
-`ALTER ROLE postgres with PASSWORD 'password'` (cambiar por el password deseado)
+`CREATE USER usuario WITH PASSWORD 'password';`(cambiar por el usuario y password deseado)
 
-`sudo -u postgres createdb -O postgres listahu`
+`sudo -u postgres createdb -O usuario listahu`
