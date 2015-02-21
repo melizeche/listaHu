@@ -7,12 +7,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
 <script src="/static/js/nav.js"></script>
-
-<!-- <div class="pure-g"> -->
+<a id="vis"  onclick="hideDivs();" href="#">Ver como lista</a>
 
 <div id="results"></div>
 <div id="columns">
 <div id="denuncias"></div>
+<div id="tabla" style="display:none">
+	<table class='pure-table pure-table-bordered'>
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Numero</th>
+				<th>Tipo</th>
+				<th>Descripcion</th>
+			</tr>
+		</thead>
+		<tbody id='tb'></tbody></table>
+
+</div>
 <div id="mas"><p> <label id="canti"></label></p>
 <button id="botmas" class="pure-input-1 button-xlarge pure-button" style="width:100%;"  onclick="load_posts(next)">Cargar Más</button></div>
 

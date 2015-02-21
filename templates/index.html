@@ -6,14 +6,19 @@
 <div class="content">
             <a id="que"></a> <h2 class="content-subhead"><i class="fa fa-question-circle fa-lg negro"></i> ¿Qué es?</h2>
             <p>
-                Este proyecto nace para crear una base de datos de mensajes y llamadas no deseadas, sean SPAM, extorsión o estafa, para identificar y eventualmente para poder bloquearlos, una lista negra.
+               Lista Hū es un proyecto que nace con el fin de crear una base de datos de números telefónicos que realizan llamadas o envían mensajes no deseados. Estos mensajes y/o llamadas son usualmente de extorsión, estafa o publicidad invasiva. El objetivo es identificar colectivamente a estos números para su posterior bloqueo desde una lista negra o lista hū.
             </p>
 
             <a id="idea"></a><h2 class="content-subhead" ><i class="fa fa-lightbulb-o fa-lg negro"></i> La idea</h2>
             <p>
-                Como cada día hay <a href="http://www.abc.com.py/nacionales/piden-denunciar-las-llamadas-extorsivas-1335867.html">noticias de estafas, extorsiones y otros crímenes </a> realizados a través de mensajes o llamadas a celulares y la gente sigue cayendo Lista Hũ apunta a identificar las lineas de que están haciendo esto. Recabar estos datos solo se puede lograr con el esfuerzo colectivo. Actualmente se puede descargar la lista y consultar los números pero la idea es un futuro cercano hacer una app que se actualice con los datos de la lista para bloquear automáticamente los mensajes y llamadas molestas o potencialmente peligrosas.
+                Todos los días vemos en las distintas plataformas de noticias una cantidad abrumadora de personas que <a href="http://www.abc.com.py/nacionales/piden-denunciar-las-llamadas-extorsivas-1335867.html">reciben llamadas y/o mensajes de tinte extorsivo o no deseado.</a> Muchas de estas personas son estafadas en su buena fe o son víctimas de violación de privacidad desde la venta de bases de datos con sus números telefónicos.
+            </p><p>
+                Lista Hū tiene por objetivo utilizar el recurso más importante de una comunidad, la colaboración entre sus miembros, para poder generar una base de datos que permita primero identificar y luego bloquear a los números que realizan este tipo de comunicaciones.
+            </p><p>
+                Actualmente se puede descargar la lista hū y consultar los números que están en ella, pero en un futuro cercano y con ayuda de la comunidad se pretende crear una app que se actualice automáticamente con los datos de la lista negra para bloquear así a estos números y reducir el riesgo potencial de recibir este tipo de comunicaciones.
+            </p><p>
+                Para colaborar con la lista hū basta con que llenes los campos del formulario y adjuntes una captura de pantalla del mensaje o, si se trata de una llamada, una captura del registro telefónico de tu celular en donde aparezca el número a ser denunciado.
             </p>
-            <p>Para agregar un número basta con llenar el formulario con el número y una captura de pantalla del mensaje o si fue una llamada al menos la captura de pantalla del registro de llamadas.</p>
             <a id="denuncia"></a>
             <div class="borde">
             <h2 ><i class="fa fa-exclamation-triangle fa-lg negro"></i> Denunciá</h2>
@@ -63,9 +68,9 @@
             </p>
              <a id="descargar"></a><h2 class="content-subhead"><i class="fa fa-cloud-download fa-lg negro"></i> Descargá la Lista Hũ</h2>
             <p>
-                Podes descargar directamente a tu telefono en un archivo de contactos(vCard) para identificar si es que te escriben o llaman desde algun numero de la lista,
-                también está disponible en CSV(compatible con Excel) para ver los datos.<br>
-                La documentación del API está en progreso pero ya podes consultar la lista completa, es un API RESTful, devuelve los datos en JSON.
+               Podés bajarla directamente a tu celular en un formato de archivo de contactos (vCard) para poder identificar si es que la llamada o mensaje que recibís pertenece a un remitente que ya fue denunciado por la comunidad. También está disponible en formato .csv (compatible con Excel) para ver los datos de la lista.</p>
+            <p>
+                La documentación del API para desarrolladores está en proceso pero ya podés consultar la lista completa a través de un API RESTful que devuelve los datos en JSON.
             </p>
 
             <h2 class="content-subhead">Actualemente Hay {{denuncias}} registros</h2>
@@ -76,7 +81,9 @@
                 </ul>
 
              <a id="futuro"></a><h2 class="content-subhead"><i class="fa fa-clock-o fa-lg negro"></i> A futuro</h2>
-             <p>Además de la app para bloquear automáticamente la idea es poder descargar la lista filtrado por tipo de denuncia, también ofrecer un sistema de votaciones para calificar como válida o no la denuncia, descargar solo las denuncias verificadas.</p>
-             <p>Si tu número figura en la lista y crees que no debería estar utilizá el formulario de contacto para solicitar darlo de baja.</p>
+             <p>Además del desarrollo de una app para bloqueo automático de números denunciados por la comunidad se trabajará en un filtro de la lista por tipo de denuncia (números extorsivos, números de SPAM comercial, etc.), también un sistema de calificación de cada denuncia para validar los datos denunciados y la capacidad de descargar y bloquear solamente los números denunciados y verificados por la misma comunidad con sus votos.
+            </p><p>
+            Si tu número figura en la Lista Hū y crees que no debería estar allí por favor utiliza el formulario de contacto para solicitar su baja.</p>
+            
     </div>
 {% endblock %}
