@@ -3,7 +3,7 @@ var next="";
 var cant=0;
 var total=0;
 var elements=[];
-var flag=true;
+var flag=false;
 
 //$("#tabla").hide();
 

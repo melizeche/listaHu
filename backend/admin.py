@@ -1,6 +1,11 @@
 # -*- encoding: utf-8 -*-
 from django.contrib import admin
 from backend.models import Tipo, Denuncia, Estadistica
+from django.contrib.admin import site
+import adminactions.actions as actions
+
+# register all adminactions
+actions.add_to_site(site)
 
 # Register your models here.
 class DenunciaAdmin(admin.ModelAdmin):
