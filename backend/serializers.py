@@ -15,7 +15,7 @@ class DenunciaSerializer(serializers.ModelSerializer):
      )
 	class Meta:
 		model = Denuncia
-		fields = ('id', 'numero', 'tipo', 'screenshot', 'check','added','votsi','votno')
+		fields = ('id', 'numero', 'tipo', 'screenshot', 'desc', 'check','added','votsi','votno')
 
 class ListaSerializer(serializers.ModelSerializer):
 	tipo = serializers.SlugRelatedField(

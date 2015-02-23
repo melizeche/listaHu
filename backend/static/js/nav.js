@@ -38,7 +38,8 @@ function toTable(){
       for (var i = 0; i < elements.length; i++) {
         var par = ( i & 1 ) ? "pure-table-odd" : "";
         var desc = ( elements[i].desc ) ? elements[i].desc : "";
-        $("#tb").append("<tr class='"+par+"' ><td>"+(i+1)+"</td><td>"+elements[i].numero+" </td><td> "+elements[i].tipo+" </td> <td> "+desc+" </td><td><a href='"+elements[i].screenshot+"' target='_blank'><i class='fa fa-file-image-o negro fa-lg' ></i> </a> </tr>");
+        var dateString = convert_to_readable_date(elements[i].added);
+        $("#tb").append("<tr class='"+par+"' ><td>"+(i+1)+"</td><td>"+elements[i].numero+" </td><td> "+elements[i].tipo+" </td> <td> "+desc+" </td><td><a href='"+elements[i].screenshot+"' target='_blank'><i class='fa fa-file-image-o negro fa-lg' ></i> </a></td><td>"+ dateString+" </tr>");
       }
     //$("#denuncias").append("</tbody></table>");
 }
