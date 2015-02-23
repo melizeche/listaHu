@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from rest_framework import routers
 from backend import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.generic import TemplateView
 
 router = routers.DefaultRouter()
 #router.register(r'users', views.UserViewSet)
@@ -23,6 +24,8 @@ urlpatterns = patterns('',
     url(r'^denuncia/$', views.denuncia, name='denuncia'),
     url(r'^descargar/$', views.download, name='descargar'),
     url(r'^descargar/(?P<formato>.+)/$', views.download, name='archivos'),
+    url(r'^contacto/$', TemplateView.as_view(template_name='contacto.html')),
+    url(r'^api/$', TemplateView.as_view(template_name='api.html')),
     url(r'^adminactions/', include('adminactions.urls')),
     # url(r'^blog/', include('blog.urls')),
     url(r'^api/v1/', include(router.urls)),

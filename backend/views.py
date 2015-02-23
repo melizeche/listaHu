@@ -31,6 +31,7 @@ class ListaViewSet(viewsets.ModelViewSet):
 	permission_classes = [IsAuthenticatedOrReadOnly] 
 	queryset 			= Denuncia.objects.all()
 	serializer_class 	= ListaSerializer
+	filter_fields 		= ('id','tipo','numero','check')
 
 	def list(self, request):
 		queryset = Denuncia.objects.all()
