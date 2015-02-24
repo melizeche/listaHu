@@ -4,6 +4,7 @@ from django.template import RequestContext, loader
 from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth.models import User, Group
 from django.core.servers.basehttp import FileWrapper
+from django.db.models import Count
 from rest_framework import viewsets, filters, generics
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, DjangoModelPermissions, DjangoObjectPermissions, IsAdminUser, AllowAny
@@ -124,3 +125,7 @@ def denuncia(request):
 
 def navegar(request):
 	return render(request, 'navegar.html',{'msg':"Navegá la lista"})
+def topDenuncias(request):
+	query = Denuncia.objects.values('numero').annotate(count=Count('numero')).order_by('-count')[:10]
+
+	return render(request, 'top.html',{'numeros':query})

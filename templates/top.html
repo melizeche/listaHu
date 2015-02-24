@@ -1,0 +1,39 @@
+{% extends "master.html" %}
+
+{% block title %}Lista Hũ - Navegar la lista{% endblock %}
+
+{% block content %}
+<h2>Top lineas denunciadas</h2>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
+
+
+<div id="tabla">
+	<table class='pure-table pure-table-bordered' style="width:100%">
+		<thead>
+			<tr>
+				<th>Posición</th>
+				<th>Numero</th>
+				<th>Denuncias</th>
+			</tr>
+		</thead>
+		<tbody id='tb'>
+			
+			{% for entry in numeros %}
+				<tr>
+					<td>{{ forloop.counter }}</td>
+					<td><a href="/buscar/{{entry.numero}}" >{{ entry.numero }}</a></td>
+					<td>{{ entry.count }}</td>
+				</tr>>
+    
+     <!-- <a href="/media/{{ entry.screenshot }}" target="_blank"> <img class="pure-img-responsive" src="/media/{{ entry.screenshot }}"  alt="{{entry.desc}}"/></a> -->
+	
+			{% endfor %}
+		</tbody></table>
+
+</div>
+
+
+</div>
+<!-- </div> -->
+{% endblock %}
