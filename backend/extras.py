@@ -33,10 +33,12 @@ def vcard(name,lista):
 	o.value = vobject.vcard.Name( family='IGNORAR', given='Lista Negra' )
 
 	for i,num in enumerate(lista):
-
+		
 		o = j.add('tel')
 		o.type_param = "cell"
-		o.value = "+"+num.numero
-
+		if isinstance(num, dict):
+			o.value = "+"+num['numero']
+		else:
+			o.value = "+"+num.numero
 
 	return(j.serialize())

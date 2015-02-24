@@ -64,9 +64,9 @@ function load_posts(url) {
                 dateString = convert_to_readable_date(results[i].added);
                 if(! results[i].desc){ desc=results[i].numero;}else{desc=results[i].desc;}
                 if(screen.width<768){
-                	$("#denuncias").append('<div class="pure-u-1-2" style="margin-right:1em" title="Denuncia #'+results[i].id+'"> <figure><label>Número:'+results[i].numero+'</label> <label> Tipo:'+results[i].tipo+'</label> <a href="'+results[i].screenshot+'" target="_blank"><img src="'+results[i].screenshot+'"></a> <figcaption>'+ dateString+'</figcaption></figure>');	
+                	$("#denuncias").append('<div class="pure-u-1-2" style="margin-right:1em" title="Denuncia #'+results[i].id+'"> <figure><label>Número:'+results[i].numero+'</label> <label> Tipo:'+results[i].tipo+'</label> <a href="'+results[i].screenshot+'" target="_blank"><img src="'+results[i].screenshot+'" title="'+desc+'" /></a> <figcaption>'+ dateString+'</figcaption></figure>');	
                 }else{
-                	$("#denuncias").append('<div class="pure-u-1-4" style="margin-right:1em" title="Denuncia #'+results[i].id+'"> <figure><label>Número:'+results[i].numero+'</label> <label> Tipo:'+results[i].tipo+'</label> <a href="'+results[i].screenshot+'" target="_blank"><img src="'+results[i].screenshot+'"></a> <figcaption>'+ dateString+'</figcaption></figure>');
+                	$("#denuncias").append('<div class="pure-u-1-4" style="margin-right:1em" title="Denuncia #'+results[i].id+'"> <figure><label>Número:'+results[i].numero+'</label> <label> Tipo:'+results[i].tipo+'</label> <a href="'+results[i].screenshot+'" target="_blank"><img src="'+results[i].screenshot+'" title="'+desc+'" /></a> <figcaption>'+ dateString+'</figcaption></figure>');
             }	}
             toTable();
             $("#canti").html("Se obtuvieron " +cant+" de "+ total + " denuncias");

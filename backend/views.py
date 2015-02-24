@@ -9,7 +9,7 @@ from rest_framework import viewsets, filters, generics
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, DjangoModelPermissions, DjangoObjectPermissions, IsAdminUser, AllowAny
 from serializers import UserSerializer, DenunciaSerializer, ListaSerializer
-from backend.models import Denuncia, Estadistica
+from backend.models import Denuncia, Estadistica, Tipo
 from forms import DenunciaForm
 from extras import validateNumber, vcard, getCSV
 import time
@@ -101,6 +101,19 @@ def download(request, **kwargs):
 			response = HttpResponse(vc, content_type='text/vcard')
 			response['Content-Disposition'] = 'attachment; filename="LISTA_HU_%s.VCF"' % (time.strftime("%Y-%m-%d",time.localtime()))
 			return response
+		elif formato=='vcard/repetidos':
+			lista = Denuncia.objects.values('numero').annotate(the_count=Count('numero')).order_by('-the_count').filter(the_count__gte=2)
+			vc = str(vcard("Todos", lista))
+			response = HttpResponse(vc, content_type='text/vcard')
+			response['Content-Disposition'] = 'attachment; filename="LISTA_HU_REP_%s.VCF"' % (time.strftime("%Y-%m-%d",time.localtime()))
+			return response
+		elif formato=='vcard/nospam':
+			lista =  Denuncia.objects.all().distinct('numero').exclude(tipo=Tipo.objects.get(titulo='SPAM').id)
+			vc = str(vcard("Todos", lista))
+			response = HttpResponse(vc, content_type='text/vcard')
+			response['Content-Disposition'] = 'attachment; filename="LISTA_HU_NOSPAM_%s.VCF"' % (time.strftime("%Y-%m-%d",time.localtime()))
+			return response
+
 
 	
 	return HttpResponse("<h2>Descargar:</h2><a href='vcard'>vCard</a><br><a href='csv'>CSV</a>")
