@@ -70,15 +70,15 @@ def update_stats(sender, instance, created, **kwargs):
 		cant = Estadistica.objects.get(nombre='denuncias')
 	except Estadistica.DoesNotExist:
 		cant = None
-	
-	if cant:
-		cant.valor +=  1
-		cant.save()
+	if created:
+		if cant:
+			cant.valor +=  1
+			cant.save()
 
-	else:
-		cant = Denuncia.objects.all().count()
-		a = Estadistica(nombre="denuncias",valor=cant)
-		a.save()
+		else:
+			cant = Denuncia.objects.all().count()
+			a = Estadistica(nombre="denuncias",valor=cant)
+			a.save()
 
 post_save.connect(update_stats, sender=Denuncia) 
 

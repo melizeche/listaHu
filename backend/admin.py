@@ -11,7 +11,10 @@ actions.add_to_site(site)
 class DenunciaAdmin(admin.ModelAdmin):
 	list_display=('numero','tipo', 'check','added','votsi','votno')
 
+class EstadisticaAdmin(admin.ModelAdmin):
+	list_display=('nombre','valor', 'otro')
+
 admin.site.register(Denuncia, DenunciaAdmin)
 admin.site.register(Tipo)
-admin.site.register(Estadistica)
+admin.site.register(Estadistica, EstadisticaAdmin)
 

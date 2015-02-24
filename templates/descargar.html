@@ -1,0 +1,20 @@
+{% extends "master.html" %}
+
+{% block title %}Lista Hũ - Descargar{% endblock %}
+
+{% block content %}
+<h1>Descargar:</h1>
+<p>Tenes varias opciones, podés descargar la lista completa, con números de SPAM, Extorsión y Estafa que es lo recomendado.</p>
+<p>La segunda opción la lista solo incluye los números que fueron denunciados dos veces o más, por si querés tener algo más filtrado</p>
+<p>También podes descargar la lista que solo incluyen las denuncias de de Extorsión y Estafa, esta lista no incluye las denuncias por SPAM</p>
+
+<h2>vCard, Archivo de contacto</h2>
+<li><a href='vcard'>Lista completa</a>(Recomendado)</li>
+<li><a href='vcard/repetidos'>Solo con más de una denuncia</a></li>
+<li><a href='vcard/nospam'>Solo Extorsión y Estafas</a></li>
+
+<h2>CSV, compatible con Excel</h2>
+<li><a href='csv'>CSV</a></li>
+
+
+{% endblock %}

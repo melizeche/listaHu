@@ -115,7 +115,7 @@ def download(request, **kwargs):
 			return response
 
 
-	
+	return render(request, 'descargar.html', {'msg':'msg'})
 	return HttpResponse("<h2>Descargar:</h2><a href='vcard'>vCard</a><br><a href='csv'>CSV</a>")
 
 def denuncia(request):
