@@ -7,6 +7,7 @@ from django.db.models.signals import post_save, pre_save
 def rename(instance, filename):
 	#print instance.numero
 	path = "denuncias/"
+	filename = filename.replace(" ","_")
 	if not instance.numero:
 		format = time.strftime("%Y%m%d%H%M",time.localtime()) + "-" + filename
 	else:
@@ -42,7 +43,7 @@ class Denuncia(models.Model):
 	added 		= models.DateTimeField('Agregado',auto_now_add=True, null=True, blank=True)
 
 	def validateNumber(self, number):
-
+		number = number.replace(" ", "")
 		if number.startswith('09'):
 			new = "5959" + number[2:]
 		elif number.startswith('+'):

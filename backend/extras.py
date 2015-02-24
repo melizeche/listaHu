@@ -4,7 +4,7 @@ import csv, datetime, unicodedata, cStringIO
 from django.utils import timezone
 
 def validateNumber(number):
-
+		number = number.replace(" ", "")
 		if number.startswith('09'):
 			new = "5959" + number[2:]
 		elif number.startswith('+'):

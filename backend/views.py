@@ -96,6 +96,7 @@ def download(request, **kwargs):
 			response['Content-Disposition'] = 'attachment; filename="LISTA_HU_%s.csv"' % (time.strftime("%Y-%m-%d",time.localtime()))
 			return response
 		elif formato=='vcard':
+			lista = Denuncia.objects.all().distinct('numero')
 			vc = str(vcard("Todos", lista))
 			response = HttpResponse(vc, content_type='text/vcard')
 			response['Content-Disposition'] = 'attachment; filename="LISTA_HU_%s.VCF"' % (time.strftime("%Y-%m-%d",time.localtime()))
