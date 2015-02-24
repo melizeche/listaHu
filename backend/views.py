@@ -126,6 +126,6 @@ def denuncia(request):
 def navegar(request):
 	return render(request, 'navegar.html',{'msg':"Navegá la lista"})
 def topDenuncias(request):
-	query = Denuncia.objects.values('numero').annotate(count=Count('numero')).order_by('-count')[:10]
+	query = Denuncia.objects.values('numero').annotate(count=Count('numero')).order_by('-count')[:50]
 
 	return render(request, 'top.html',{'numeros':query})
