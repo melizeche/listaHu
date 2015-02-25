@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth.models import User, Group
+from django.contrib import messages
 from django.core.servers.basehttp import FileWrapper
 from django.db.models import Count
 from rest_framework import viewsets, filters, generics
@@ -49,6 +50,7 @@ def home(request):
 			#X =  Denuncia()
 			x = form.cleaned_data
 			form.save()
+			messages.success(request, "Se agregó correctamente!")
 			return HttpResponseRedirect('/buscar/%s' % x['numero'])
 			return HttpResponse("Agregado con exito! <a href='/'>Volver</a>")
 		else:
@@ -78,6 +80,7 @@ def buscar(request,**kargs):
 			for n in query:
 				print n
 			resp = query
+			#cant = len(query)
 		else:
 			msg = u"No se encontró %s en la base de datos" % numero
 

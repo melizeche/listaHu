@@ -3,6 +3,13 @@
 {% block title %}Lista Hũ - Resultados de busqueda{% endblock %}
 
 {% block content %}
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><h3>{{ message }}</h3></li>
+  {% endfor %}
+</ul>
+{% endif %}
 <h2>{{ msg }}</h2>
 
  <form method="get" action="/buscar/" onsubmit="return false;" class='pure-form' id="buscar">
@@ -11,6 +18,11 @@
      <i class="fa fa-search-plus fa-lg"></i> Buscar
     </button>
 </form>
+{% if  numeros|length  == 1 %}
+	Se encontró {{ numeros|length  }} denuncia
+{% elif numeros|length  > 1 %}
+	Se encontró {{ numeros|length  }} denuncias
+{% endif %}
 <!-- <div class="pure-g"> -->
 <div id="columns">
 {% for entry in numeros %}
