@@ -2,7 +2,15 @@
 {% block title %}Lista Hũ{% endblock %}
 
 {% block content %}
-
+<script type="text/javascript">
+    function scrollTo(hash) {
+       location.hash = "#" + hash;
+    }
+    if ('fail'=='{{fail}}'){
+        console.log('failed form')
+        scrollTo('denuncia')
+    }
+</script>
 <div class="content">
             <a id="que"></a> <h2 class="content-subhead"><i class="fa fa-question-circle fa-lg negro"></i> ¿Qué es?</h2>
             <p>

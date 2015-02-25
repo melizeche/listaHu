@@ -11,7 +11,7 @@ from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnl
 from serializers import UserSerializer, DenunciaSerializer, ListaSerializer
 from backend.models import Denuncia, Estadistica, Tipo
 from forms import DenunciaForm
-from extras import validateNumber, vcard, getCSV
+from extras import validateNumber, vcard, vcard2, getCSV
 import time
 # Create your views here.
 
@@ -40,7 +40,7 @@ class ListaViewSet(viewsets.ModelViewSet):
 		return Response(serializer.data)
 
 def home(request):
-
+	fail=""
 	if request.method == 'POST':
 		form = DenunciaForm(request.POST, request.FILES)
 		if form.is_valid():
@@ -51,6 +51,8 @@ def home(request):
 			form.save()
 			return HttpResponseRedirect('/buscar/%s' % x['numero'])
 			return HttpResponse("Agregado con exito! <a href='/'>Volver</a>")
+		else:
+			fail='fail'
 
 	else:
 		print "else"
@@ -61,7 +63,7 @@ def home(request):
 	except Estadistica.DoesNotExist:
 		cant = ""
 
-	return render(request, 'index.html', {'form': form,'denuncias':cant})
+	return render(request, 'index.html', {'form': form,'denuncias':cant, 'fail':fail})
 
 	return HttpResponse("AAAAAAAAAAA")
 
