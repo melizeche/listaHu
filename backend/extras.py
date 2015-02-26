@@ -5,6 +5,9 @@ from django.utils import timezone
 
 def validateNumber(number):
 		number = number.replace(" ", "")
+		number = number.replace("-", "")
+		number = number.replace(")", "")
+		number = number.replace("(", "")
 		if number.startswith('09'):
 			new = "5959" + number[2:]
 		elif number.startswith('+'):

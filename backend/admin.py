@@ -9,7 +9,9 @@ actions.add_to_site(site)
 
 # Register your models here.
 class DenunciaAdmin(admin.ModelAdmin):
-	list_display=('numero','tipo', 'check','added','votsi','votno')
+	list_display	= ('numero','tipo','check','added','votsi','votno')
+	list_filter 	= ('tipo','check')
+	search_fields 	= ('numero','tipo','check','added','votsi','votno')
 
 class EstadisticaAdmin(admin.ModelAdmin):
 	list_display=('nombre','valor', 'otro')
