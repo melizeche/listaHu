@@ -324,7 +324,6 @@ html, button, input, select, textarea {
 }
 
 .fondo {
-  background-image: url(/static/bg-2.jpg);
   background-position: center top;
   background-size: cover;
   -webkit-filter: blur(10px);
