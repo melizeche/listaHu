@@ -6,3 +6,4 @@ psycopg2==2.6
 vobject==0.6.6
 django-adminactions
 django-admin-bootstrapped
+django-cors-headers
