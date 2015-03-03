@@ -48,10 +48,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'backend',
     'rest_framework',
+    'corsheaders'
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -122,3 +124,8 @@ REST_FRAMEWORK = {
     'PAGINATE_BY': 50,
     'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
 }
+
+# Enable CORS for GET request to /api/v1/denuncias only
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_URLS_REGEX = r'/api/v1/denuncias.*$'
+CORS_ALLOW_METHODS = ('GET')
