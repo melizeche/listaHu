@@ -11,7 +11,7 @@ actions.add_to_site(site)
 class DenunciaAdmin(admin.ModelAdmin):
 	list_display	= ('numero','tipo','check','added','votsi','votno')
 	list_filter 	= ('tipo','check')
-	search_fields 	= ('numero','tipo','check','added','votsi','votno')
+	search_fields 	= ('numero','tipo','check','added','desc')
 
 class EstadisticaAdmin(admin.ModelAdmin):
 	list_display=('nombre','valor', 'otro')
