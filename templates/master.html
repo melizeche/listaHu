@@ -38,7 +38,7 @@
 
     <div id="menu">
         <div class="pure-menu pure-menu-open">
-            <a class="pure-menu-heading" href="/#"><i class="fa fa-ban fa-lg" alt="Simbolo prohibido"></i> Lista Hũ</a>
+            <a class="pure-menu-heading" href="/#"><i class="fa fa-ban fa-lg" alt="Icono prohibido"></i> Lista Hũ</a>
             {% block menu %}
             <ul>
                 <li><a href="/#que">¿Qué es?</a></li>
@@ -48,7 +48,7 @@
                 <li><a href="/#descargar">Descargá la lista</a></li>
                 <li><a href="/#futuro">A futuro</a></li>
                 <li class="menu-item-divided pure-menu-selected">
-                    <a href="#"><i class="fa fa-info-circle fa-lg" alt="Simbolo de informacion"></i> Más Info</a>
+                    <a href="#"><i class="fa fa-info-circle fa-lg" alt="Icono de informacion"></i> Más Info</a>
                 </li>
                 <li><a href="/navegar">Navegá la lista!</a></li>
                 <li><a href="/top">Top 50</a></li>
@@ -58,11 +58,11 @@
 
 
                 <li class="menu-item-divided pure-menu-selected">
-                    <a href="/buscar"><i class="fa fa-search-plus fa-lg" alt="Simbolo de busqueda"></i> Buscar numero</a>
+                    <a href="/buscar"><i class="fa fa-search-plus fa-lg" alt="Icono de busqueda"></i> Buscar numero</a>
                 </li>
             </ul>
                 <form method="get" action="/buscar/" onsubmit="return false;" class='pure-form'>
-                    <input type="search" name="q" value="" placeholder="Ej. 0981XXXXXX" class='pure-input-1'/>
+                    <input type="search" name="q" value="" placeholder="Ej. 0981XXXXXX" class='pure-input-1' title="Buscar"/>
                     <input type="submit" style="position: absolute; left: -9999px" onclick="window.location.href=this.form.action + this.form.q.value;" value="Buscar" class='button-large pure-button'/>
                 </form>
 
@@ -77,7 +77,7 @@
     <div id="main">
 
         <div class="header">
-            <h1><i class="fa fa-ban fa-lg" alt="simbolo prohibido"></i> Lista Hũ</h1>
+            <h1><i class="fa fa-ban fa-lg" alt="Icono prohibido"></i> Lista Hũ</h1>
             <h2>Denunciá los mensajes y llamadas no deseadas</h2>
         </div>
         <img src='/static/imgs/logo.png' style="display:none" alt="Logo" />
