@@ -14,14 +14,6 @@ from backend.models import Denuncia, Estadistica, Tipo
 from forms import DenunciaForm
 from extras import validateNumber, vcard, vcard2, getCSV
 import time
-# Create your views here.
-
-# class UserViewSet(viewsets.ModelViewSet):
-#     """
-#     API endpoint that allows users to be viewed or edited.
-#     """
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
 
 class DenunciaViewSet(viewsets.ModelViewSet):
 	permission_classes = [IsAuthenticatedOrReadOnly] 
@@ -134,17 +126,15 @@ def denuncia(request):
 			x = form.cleaned_data
 			form.save()
 			return HttpResponseRedirect('/buscar/%s' % x['numero'])
-			return HttpResponse("Agregado con exito! <a href='/'>Volver</a>")
 
 	else:
 		print "else"
-		#print form
 		form = DenunciaForm()
 	return render(request, 'denuncia.html', {'form': form})
 
 def navegar(request):
 	return render(request, 'navegar.html',{'msg':"Navegá la lista"})
+
 def topDenuncias(request):
 	query = Denuncia.objects.values('numero').annotate(count=Count('numero')).order_by('-count')[:50]
-
 	return render(request, 'top.html',{'numeros':query})

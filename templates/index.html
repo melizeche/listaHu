@@ -12,12 +12,12 @@
     }
 </script>
 <div class="content">
-            <a id="que"></a> <h2 class="content-subhead"><i class="fa fa-question-circle fa-lg negro"></i> ¿Qué es?</h2>
+            <a id="que"></a> <h2 class="content-subhead"><i class="fa fa-question-circle fa-lg negro" alt="simbolo de pregunta"></i> ¿Qué es?</h2>
             <p>
                Lista Hū es un proyecto que nace con el fin de crear una base de datos de números telefónicos que realizan llamadas o envían mensajes no deseados. Estos mensajes y/o llamadas son usualmente de extorsión, estafa o publicidad invasiva. El objetivo es identificar colectivamente a estos números para su posterior bloqueo desde una lista negra o lista hū.
             </p>
 
-            <a id="idea"></a><h2 class="content-subhead" ><i class="fa fa-lightbulb-o fa-lg negro"></i> La idea</h2>
+            <a id="idea"></a><h2 class="content-subhead" ><i class="fa fa-lightbulb-o fa-lg negro" alt="Simbolo de idea"></i> La idea</h2>
             <p>
                 Todos los días vemos en las distintas plataformas de noticias una cantidad abrumadora de personas que <a href="http://www.abc.com.py/nacionales/piden-denunciar-las-llamadas-extorsivas-1335867.html">reciben llamadas y/o mensajes de tinte extorsivo o no deseado.</a> Muchas de estas personas son estafadas en su buena fe o son víctimas de violación de privacidad desde la venta de bases de datos con sus números telefónicos.
             </p><p>
@@ -29,7 +29,7 @@
             </p>
             <a id="denuncia"></a>
             <div class="borde">
-            <h2 ><i class="fa fa-exclamation-triangle fa-lg negro"></i> Denunciá</h2>
+            <h2 ><i class="fa fa-exclamation-triangle fa-lg negro" alt="signo de exclamación"></i> Denunciá</h2>
             
                 <form action="/" method="post" class="pure-form pure-form-stacked" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -40,33 +40,33 @@
 
             
             </div>
-            <a id="ejemplos"></a><h2 class="content-subhead"><i class="fa fa-camera-retro fa-lg negro"></i> Ejemplos</h2>
+            <a id="ejemplos"></a><h2 class="content-subhead"><i class="fa fa-camera-retro fa-lg negro" alt="Simbolo de una cámara"></i> Ejemplos</h2>
             <div class="pure-g">
                 <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="/static/imgs/d1.jpg" alt />
+                    <img class="pure-img-responsive" src="/static/imgs/d1.jpg" alt="Captura de pantalla de ejemplo" />
                 </div>
                 <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="/static/imgs/d2.jpg" alt />
+                    <img class="pure-img-responsive" src="/static/imgs/d2.jpg" alt="Captura de pantalla de ejemplo" />
                 </div>
                 <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="/static/imgs/d3.jpg" alt />
+                    <img class="pure-img-responsive" src="/static/imgs/d3.jpg" alt="Captura de pantalla de ejemplo" />
                 </div>
                 <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="/static/imgs/d4.png" alt />
+                    <img class="pure-img-responsive" src="/static/imgs/d4.png" alt="Captura de pantalla de ejemplo" />
                 </div>
             </div>
             <div class="pure-g">
                 <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="/static/imgs/d6.jpg" alt />
+                    <img class="pure-img-responsive" src="/static/imgs/d6.jpg" alt="Captura de pantalla de ejemplo" />
                 </div>
                 <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="/static/imgs/d5.jpg" alt />
+                    <img class="pure-img-responsive" src="/static/imgs/d5.jpg" alt="Captura de pantalla de ejemplo" />
                 </div>
                 <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="/static/imgs/d8.png" alt />
+                    <img class="pure-img-responsive" src="/static/imgs/d8.png" alt="Captura de pantalla de ejemplo" />
                 </div>
                 <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="/static/imgs/d7.jpg" alt />
+                    <img class="pure-img-responsive" src="/static/imgs/d7.jpg" alt="Captura de pantalla de ejemplo" />
                 </div>
             </div>
 
@@ -74,7 +74,7 @@
             <p>
                 
             </p>
-             <a id="descargar"></a><h2 class="content-subhead"><i class="fa fa-cloud-download fa-lg negro"></i> Descargá la Lista Hũ</h2>
+             <a id="descargar"></a><h2 class="content-subhead"><i class="fa fa-cloud-download fa-lg negro" alt="simbolo nube"></i> Descargá la Lista Hũ</h2>
             <p>
                Podés bajarla directamente a tu celular en un formato de archivo de contactos (vCard) para poder identificar si es que la llamada o mensaje que recibís pertenece a un remitente que ya fue denunciado por la comunidad. También está disponible en formato .csv (compatible con Excel) para ver los datos de la lista.</p>
             <p>
@@ -83,13 +83,13 @@
 
             <h2 class="content-subhead">Actualemente Hay {{denuncias}} registros</h2>
                 <ul>
-                    <li><i class="fa fa-users fa-lg"></i> Descargá el <a href="/descargar/vcard">archivo de contacto</a></li>
-                    <li><i class="fa fa-table fa-lg"></i> Descargá en <a href="/descargar/csv">formato CSV</a></li>
-                    <li><i class="fa fa-file-code-o fa-lg"></i> Consultá en <a href="/api/v1/lista">JSON</a></li>
+                    <li><i class="fa fa-users fa-lg" alt="Simbolo descarga"></i> Descargá el <a href="/descargar/vcard">archivo de contacto</a></li>
+                    <li><i class="fa fa-table fa-lg" alt="Simbolo tabla"></i> Descargá en <a href="/descargar/csv">formato CSV</a></li>
+                    <li><i class="fa fa-file-code-o fa-lg" alt="Simbolo de Codigo"></i> Consultá en <a href="/api/v1/lista">JSON</a></li>
                 </ul>
                 <h3>Para mas opciones de descarga(listas filtradas) <a href="/descargar">ingresá acá</a><h3>
 
-             <a id="futuro"></a><h2 class="content-subhead"><i class="fa fa-clock-o fa-lg negro"></i> A futuro</h2>
+             <a id="futuro"></a><h2 class="content-subhead"><i class="fa fa-clock-o fa-lg negro" alt="Simbolo reloj"></i> A futuro</h2>
              <p>Además del desarrollo de una app para bloqueo automático de números denunciados por la comunidad se trabajará en un filtro de la lista por tipo de denuncia (números extorsivos, números de SPAM comercial, etc.), también un sistema de calificación de cada denuncia para validar los datos denunciados y la capacidad de descargar y bloquear solamente los números denunciados y verificados por la misma comunidad con sus votos.
             </p><p>
             Si tu número figura en la Lista Hū y crees que no debería estar allí por favor utiliza el formulario de contacto para solicitar su baja.</p>

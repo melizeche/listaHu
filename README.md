@@ -1,3 +1,21 @@
+#Requerimientos
+`Django==1.7.4`
+
+`Pillow==2.7.0`
+
+`django-filter==0.9.2`
+
+`djangorestframework==3.0.5`
+
+`psycopg2==2.6`
+
+`vobject==0.6.6`
+
+`django-adminactions`
+
+`django-admin-bootstrapped`
+
+`django-cors-headers`
 
 #Instalación
 
