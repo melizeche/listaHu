@@ -314,6 +314,7 @@ footer {
 }
 p {
     font-family: 'Roboto Condensed', sans-serif;
+    text-align: justify;
 }
 
 html, button, input, select, textarea {
