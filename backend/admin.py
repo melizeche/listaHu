@@ -7,13 +7,12 @@ import adminactions.actions as actions
 # register all adminactions
 actions.add_to_site(site)
 
-# Register your models here.
-
 
 class DenunciaAdmin(admin.ModelAdmin):
-    list_display = ('numero', 'tipo', 'check', 'added', 'votsi', 'votno')
-    list_filter = ('tipo', 'check')
-    search_fields = ('numero', 'tipo', 'check', 'added', 'desc')
+    list_display = (
+        'numero', 'tipo', 'check', 'added', 'votsi', 'votno', 'activo')
+    list_filter = ('tipo', 'check', 'activo')
+    search_fields = ('numero', 'added', 'desc')
 
 
 class EstadisticaAdmin(admin.ModelAdmin):

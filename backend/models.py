@@ -46,6 +46,7 @@ class Denuncia(models.Model):
     check       = models.NullBooleanField(null=True, default=False)
     votsi       = models.IntegerField(null=True, blank=True, default=0)
     votno       = models.IntegerField(null=True, blank=True, default=0)
+    activo      = models.BooleanField(default=True)
     added       = models.DateTimeField(
                     'Agregado', auto_now_add=True, null=True, blank=True)
 

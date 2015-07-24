@@ -18,19 +18,19 @@ import time
 
 class DenunciaViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
-    queryset = Denuncia.objects.all().order_by('-added')
+    queryset = Denuncia.objects.filter(activo=True).order_by('-added')
     serializer_class = DenunciaSerializer
     filter_fields = ('id', 'tipo', 'numero', 'check')
 
 
 class ListaViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
-    queryset = Denuncia.objects.all()
+    queryset = Denuncia.objects.filter(activo=True)
     serializer_class = ListaSerializer
     filter_fields = ('id', 'tipo', 'numero', 'check')
 
     def list(self, request):
-        queryset = Denuncia.objects.all()
+        queryset = Denuncia.objects.filter(activo=True)
         serializer = DenunciaSerializer(queryset, many=True)
         return Response(serializer.data)
 
@@ -70,26 +70,23 @@ def buscar(request, **kargs):
     if 'numero' in kargs:
         numero = kargs['numero']
         validado = validateNumber(numero)
-        query = Denuncia.objects.filter(numero=validado)
+        query = Denuncia.objects.filter(numero=validado, activo=True)
         vcard("", query)
         if query:
-            for n in query:
-                print n
+            msg = validado
             resp = query
-            #cant = len(query)
         else:
             msg = u"No se encontró %s en la base de datos" % numero
 
-        return render(request, 'buscar.html', {'numeros': query, 'msg': msg})
-    else:
-        return render(request, 'buscar.html', {'numeros': query, 'msg': msg})
+    return render(request, 'buscar.html', {'numeros': query, 'msg': msg})
+    
 
 
 def download(request, **kwargs):
     print kwargs
     if 'formato' in kwargs:
         formato = kwargs['formato']
-        lista = Denuncia.objects.all()
+        lista = Denuncia.objects.filter(activo=True)
         if formato == 'csv':
             archi = getCSV(lista)
             response = HttpResponse(archi, content_type='text/csv')
@@ -97,7 +94,7 @@ def download(request, **kwargs):
                 time.strftime("%Y-%m-%d", time.localtime()))
             return response
         elif formato == 'vcard':
-            lista = Denuncia.objects.all().distinct('numero')
+            lista = Denuncia.objects.filter(activo=True).distinct('numero')
             vc = str(vcard("Todos", lista))
             response = HttpResponse(vc, content_type='text/vcard')
             response['Content-Disposition'] = 'attachment; filename="LISTA_HU_%s.VCF"' % (
@@ -112,7 +109,7 @@ def download(request, **kwargs):
                 time.strftime("%Y-%m-%d", time.localtime()))
             return response
         elif formato == 'vcard/nospam':
-            lista = Denuncia.objects.all().distinct('numero').exclude(
+            lista = Denuncia.objects.filter(activo=True).distinct('numero').exclude(
                 tipo=Tipo.objects.get(titulo='SPAM').id)
             vc = str(vcard("Todos", lista))
             response = HttpResponse(vc, content_type='text/vcard')
@@ -147,6 +144,6 @@ def navegar(request):
 
 
 def topDenuncias(request):
-    query = Denuncia.objects.values('numero').annotate(
+    query = Denuncia.objects.filter(activo=True).values('numero').annotate(
         count=Count('numero')).order_by('-count')[:50]
     return render(request, 'top.html', {'numeros': query})
