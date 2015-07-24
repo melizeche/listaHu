@@ -8,7 +8,6 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic import TemplateView
 
 router = routers.DefaultRouter()
-#router.register(r'users', views.UserViewSet)
 router.register(r'denuncias', views.DenunciaViewSet)
 router.register(r'lista', views.ListaViewSet)
 
@@ -17,7 +16,6 @@ admin.site.site_header = 'Administrador de denuncias'
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'backend.views.home', name='home'),
-    #url(r'^$', 'backend.views.buscar', name='home'),
     url(r'^buscar/(?P<numero>.+)/$', views.buscar, name='buscar'),
     url(r'^buscar/$', views.buscar, name='buscar'),
     url(r'^navegar/$', views.navegar, name='navegar'),
