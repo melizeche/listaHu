@@ -19,7 +19,15 @@ Add transition to containers so they can push in and out.
     -o-transition: all 0.2s ease-out;
     transition: all 0.2s ease-out;
 }
-
+#corner {
+    position: relative;
+}
+.ribbon {
+    position: absolute;
+    display: none;
+    top: 0px;
+    right: 0px;
+}
 /*
 This is the parent `<div>` that contains the menu and the content area.
 */
@@ -213,6 +221,12 @@ small screens.
 Hides the menu at `48em`, but modify this based on your app's needs.
 */
 @media (min-width: 48em) {
+    .ribbon {
+    position: absolute;
+    display: block;
+    top: 0px;
+    right: 0px;
+    }
 
     .header,
     .content {
