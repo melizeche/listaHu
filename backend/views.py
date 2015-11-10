@@ -8,9 +8,11 @@ from django.core.servers.basehttp import FileWrapper
 from django.db.models import Count
 from rest_framework import viewsets, filters, generics
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, DjangoModelPermissions, DjangoObjectPermissions, IsAdminUser, AllowAny
-from serializers import UserSerializer, DenunciaSerializer, ListaSerializer
+from rest_framework.permissions import (IsAuthenticated, IsAuthenticatedOrReadOnly, 
+    DjangoModelPermissions, DjangoObjectPermissions, IsAdminUser, AllowAny)
+from serializers import DenunciaSerializer, ListaSerializer
 from backend.models import Denuncia, Estadistica, Tipo
+from backend.filters import DenunciaFilter
 from forms import DenunciaForm
 from extras import validateNumber, vcard, vcard2, getCSV
 import time
@@ -20,7 +22,7 @@ class DenunciaViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Denuncia.objects.filter(activo=True).order_by('-added')
     serializer_class = DenunciaSerializer
-    filter_fields = ('id', 'tipo', 'numero', 'check')
+    filter_class = DenunciaFilter
 
 
 class ListaViewSet(viewsets.ModelViewSet):

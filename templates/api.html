@@ -5,8 +5,16 @@
 {% block content %}
 <h1>Documentación (en proceso)</h1>
 <p>En este momento el API solo está habilitado para consulta, mas adelante se va a poder agregar nuevas denuncias entre otras cosas.</p>
+<h2>Endpoints</h2>
 <h3>GET /denuncias/</h3>
-<p>http://listahu.org/api/v1/denuncias</p>
-<p>Se pude filtrar por numero, tipo e id</p>
-<p>ej. http://listahu.org/api/v1/denuncias/?numero=595975849399 </p>
+<p><a href="https://listahu.org/api/v1/denuncias">http://listahu.org/api/v1/denuncias</a></p>
+<p>Se pude filtrar por numero, tipo[spam,estafa,extorsion], id y fecha</p>
+<h4>Ejemplos</h4>
+<ul>
+
+<li>https://listahu.org/api/v1/denuncias/?numero=595975849399 </li>
+<li>https://listahu.org/api/v1/denuncias/?added_from=2015-03-01&added_to=2015-03-20</li>
+<li>https://listahu.org/api/v1/denuncias/?id_from=100&id_to=200</li>
+<li>https://listahu.org/api/v1/denuncias/?tipo=extorsion</li>
+</ul>
 {% endblock %}

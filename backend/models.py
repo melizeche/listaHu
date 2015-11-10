@@ -3,8 +3,12 @@ from django.db import models
 import os
 import time
 from django.db.models.signals import post_save, pre_save
+from django.conf import settings
+from autoslug import AutoSlugField
+from backend.extras import create_thumbnail
 # Create your models here.
 
+THUMBNAIL_BASEWIDTH = 200
 
 def rename(instance, filename):
     # print instance.numero
@@ -29,6 +33,7 @@ class Estadistica(models.Model):
 
 class Tipo(models.Model):
     titulo  = models.CharField(max_length=30)
+    slug = AutoSlugField(populate_from='titulo', unique=True, blank=True, null=True)
     desc    = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
@@ -90,4 +95,12 @@ def update_stats(sender, instance, created, **kwargs):
             a = Estadistica(nombre="denuncias", valor=cant)
             a.save()
 
+def thumbnail(sender, instance, created, **kwargs):
+    if created:
+        try:
+            img = create_thumbnail(settings.MEDIA_ROOT+str(instance.screenshot),THUMBNAIL_BASEWIDTH)
+        except:
+            pass
+
 post_save.connect(update_stats, sender=Denuncia)
+post_save.connect(thumbnail, sender=Denuncia)

@@ -8,8 +8,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic import TemplateView
 
 router = routers.DefaultRouter()
-router.register(r'denuncias', views.DenunciaViewSet)
 router.register(r'lista', views.ListaViewSet)
+router.register(r'denuncias', views.DenunciaViewSet)
 
 admin.site.site_header = 'Administrador de denuncias'
 
