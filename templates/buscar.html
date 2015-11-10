@@ -18,32 +18,31 @@
      <i class="fa fa-search-plus fa-lg" title="Simbolo de busqueda"></i> Buscar
     </button>
 </form>
-{% if  numeros|length  == 1 %}
-	Se encontró {{ numeros|length  }} denuncia
-{% elif numeros|length  > 1 %}
-	Se encontró {{ numeros|length  }} denuncias
+{% if  withthumbs|length  == 1 %}
+	Se encontró {{ withthumbs|length  }} denuncia
+{% elif withthumbs|length  > 1 %}
+	Se encontró {{ withthumbs|length  }} denuncias
 {% endif %}
-<!-- <div class="pure-g"> -->
-<div id="columns">
-{% for entry in numeros %}
 
-    <div class="pure-u-1-4" style="margin-right:1em" title="{{entry.desc}}">
+<div id="columns">
+{% for entry in withthumbs %}
+
+    <div class="pure-u-1-4" style="margin-right:1em" title="Denuncia #{{entry.0.id}}">
     <figure>
     <label>Número: </label>
-    {{ entry.numero }}
+    {{ entry.0.numero }}
     
-     <a href="/media/{{ entry.screenshot }}" target="_blank"> <img class="pure-img-responsive" src="/media/{{ entry.screenshot }}"  alt="{{entry.desc}}"/></a>
-	
+     <a href="/media/{{ entry.0.screenshot }}" target="_blank"> <img class="pure-img-responsive" src="/media/{{ entry.1 }}"  title="{{entry.0.desc}}" /></a>
+ 
     <figcaption>
-    <label>Tipo: </label>{{ entry.tipo }}
-    <label>Agregado: </label>{{ entry.added }}
+    <label>Tipo: </label>{{ entry.0.tipo }}
+    <label>Agregado: </label>{{ entry.0.added }}
     </figcaption>
     </figure>
     </div>
-
 {% endfor %}
+ {{ thumbs }}
 </div>
 <div >
 </div>
-<!-- </div> -->
 {% endblock %}

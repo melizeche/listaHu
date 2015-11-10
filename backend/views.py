@@ -1,4 +1,7 @@
 # -*- encoding: utf-8 -*-
+from os import path
+import time
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.shortcuts import render, redirect, render_to_response
@@ -8,14 +11,13 @@ from django.core.servers.basehttp import FileWrapper
 from django.db.models import Count
 from rest_framework import viewsets, filters, generics
 from rest_framework.response import Response
-from rest_framework.permissions import (IsAuthenticated, IsAuthenticatedOrReadOnly, 
-    DjangoModelPermissions, DjangoObjectPermissions, IsAdminUser, AllowAny)
+from rest_framework.permissions import (IsAuthenticated, IsAuthenticatedOrReadOnly,
+                                        DjangoModelPermissions, DjangoObjectPermissions, IsAdminUser, AllowAny)
 from serializers import DenunciaSerializer, ListaSerializer
 from backend.models import Denuncia, Estadistica, Tipo
 from backend.filters import DenunciaFilter
 from forms import DenunciaForm
 from extras import validateNumber, vcard, vcard2, getCSV
-import time
 
 
 class DenunciaViewSet(viewsets.ModelViewSet):
@@ -32,7 +34,8 @@ class ListaViewSet(viewsets.ModelViewSet):
     filter_class = DenunciaFilter
 
     def list(self, request):
-        query = DenunciaFilter(request.GET, queryset=Denuncia.objects.filter(activo=True))
+        query = DenunciaFilter(
+            request.GET, queryset=Denuncia.objects.filter(activo=True))
         serializer = DenunciaSerializer(query, many=True)
         return Response(serializer.data)
 
@@ -42,9 +45,6 @@ def home(request):
     if request.method == 'POST':
         form = DenunciaForm(request.POST, request.FILES)
         if form.is_valid():
-            print "Es valido"
-            print form.cleaned_data
-            #X =  Denuncia()
             x = form.cleaned_data
             form.save()
             messages.success(request, "Se agregó correctamente!")
@@ -54,8 +54,6 @@ def home(request):
             fail = 'fail'
 
     else:
-        print "else"
-        # print form
         form = DenunciaForm()
     try:
         cant = Estadistica.objects.get(nombre='denuncias').valor
@@ -68,7 +66,7 @@ def home(request):
 
 
 def buscar(request, **kargs):
-    query, msg = "", ""
+    query, msg, withthumbs = "", "", ""
     if 'numero' in kargs:
         numero = kargs['numero']
         validado = validateNumber(numero)
@@ -76,16 +74,17 @@ def buscar(request, **kargs):
         vcard("", query)
         if query:
             msg = validado
-            resp = query
+            withthumbs = []
+            for denuncia in query:
+                withthumbs.append((denuncia, "%s_th%s" % (path.splitext(str(denuncia.screenshot))[0],
+                                                          path.splitext(str(denuncia.screenshot))[1])))
         else:
             msg = u"No se encontró %s en la base de datos" % numero
 
-    return render(request, 'buscar.html', {'numeros': query, 'msg': msg})
-    
+    return render(request, 'buscar.html', {'msg': msg, 'withthumbs': withthumbs})
 
 
 def download(request, **kwargs):
-    print kwargs
     if 'formato' in kwargs:
         formato = kwargs['formato']
         lista = Denuncia.objects.filter(activo=True)
@@ -128,15 +127,11 @@ def denuncia(request):
     if request.method == 'POST':
         form = DenunciaForm(request.POST, request.FILES)
         if form.is_valid():
-            print "Es valido"
-            print form.cleaned_data
-            #X =  Denuncia()
             x = form.cleaned_data
             form.save()
             return HttpResponseRedirect('/buscar/%s' % x['numero'])
 
     else:
-        print "else"
         form = DenunciaForm()
     return render(request, 'denuncia.html', {'form': form})
 
