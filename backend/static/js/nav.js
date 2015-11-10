@@ -39,9 +39,12 @@ function toTable(){
         var par = ( i & 1 ) ? "pure-table-odd" : "";
         var desc = ( elements[i].desc ) ? elements[i].desc : "";
         var dateString = convert_to_readable_date(elements[i].added);
-        $("#tb").append("<tr class='"+par+"' ><td>"+(i+1)+"</td><td>"+elements[i].numero+" </td><td> "+elements[i].tipo+" </td> <td> "+desc+" </td><td><a href='"+elements[i].screenshot+"' target='_blank'><i class='fa fa-file-image-o negro fa-lg' alt='icono foto' ></i> </a></td><td>"+ dateString+" </tr>");
+        $("#tb").append("<tr class='"+par+"' ><td>"+(i+1)+"</td><td><a href='/buscar/"+elements[i].numero + 
+            "'>" + elements[i].numero+"</a> </td><td> "+elements[i].tipo+" </td> <td> " + desc + 
+            " </td><td><a href='"+elements[i].screenshot +
+            "' target='_blank'><i class='fa fa-file-image-o negro fa-lg' alt='icono foto' ></i> </a></td><td>" +
+            dateString + " </tr>");
       }
-    //$("#denuncias").append("</tbody></table>");
 }
 
 function load_posts(url) {
@@ -53,25 +56,25 @@ function load_posts(url) {
         success : function(json) {
         	results = json.results
         	total = json.count;
-        	//console.log(json.next);
         	cant = cant + results.length;
         	next=json.next;
             var desc="";
             for (var i = 0; i < results.length; i++) {
-                //console.log(results[i]);
-
                 elements.push(results[i]);
                 dateString = convert_to_readable_date(results[i].added);
-                if(! results[i].desc){ desc=results[i].numero;}else{desc=results[i].desc;}
-                if(screen.width<768){
-                	$("#denuncias").append('<div class="pure-u-1-2" style="margin-right:1em" title="Denuncia #'+results[i].id+'"> <figure><label>Número:<a href="/buscar/'+results[i].numero+'">'+results[i].numero+'</a></label> <label> Tipo:'+results[i].tipo+'</label> <a href="'+results[i].screenshot+'" target="_blank"><img src="'+results[i].screenshot+'" title="'+desc+'" /></a> <figcaption>'+ dateString+'</figcaption></figure>');	
-                }else{
-                	$("#denuncias").append('<div class="pure-u-1-4" style="margin-right:1em" title="Denuncia #'+results[i].id+'"> <figure><label>Número:<a href="/buscar/'+results[i].numero+'">'+results[i].numero+'</a></label> <label> Tipo:'+results[i].tipo+'</label> <a href="'+results[i].screenshot+'" target="_blank"><img src="'+results[i].screenshot+'" title="'+desc+'" /></a> <figcaption>'+ dateString+'</figcaption></figure>');
-            }	}
+                desc = (! results[i].desc) ? results[i].numero : results[i].desc;
+                position = results[i].screenshot.lastIndexOf('.');
+                thumbnail_name = results[i].screenshot.slice(0,position)+"_th"+results[i].screenshot.slice(position);
+                cssclass = ($(window).width()<768) ? 'pure-u-1-2': 'pure-u-1-4';
+                $("#denuncias").append('<div class="'+cssclass+'" style="margin-right:1em" title="Denuncia #' +
+                    results[i].id+'"> <figure><label>Número:<a href="/buscar/'+results[i].numero+'">' +
+                    results[i].numero+'</a></label> <label> Tipo:'+results[i].tipo+'</label> <a href="' +
+                    results[i].screenshot+'" target="_blank"><img src="'+thumbnail_name+'" title="'+desc +
+                    '" /></a> <figcaption>'+ dateString+'</figcaption></figure>');
+        }
             toTable();
             $("#canti").html("Se obtuvieron " +cant+" de "+ total + " denuncias");
             if (!next){
-            	//console.log('aaaa');
             	$("#botmas").prop('disabled', true);
             	$("#botmas").prop('title', 'No hay mas resultados para cargar');
             }else{
