@@ -41,7 +41,7 @@ Se recomienda PostgreSQL pero se puede utilizar cualquier base de datos soportad
 
 ##Paquetes necesarios (Ubuntu/Debian)
 
-`apt-get install postgresql-9.3 postgresql-contrib-9.3 postgresql-server-dev-9.3 python-dev python-pip python-virtualenv git`
+`apt-get install postgresql-9.3 postgresql-contrib-9.3 postgresql-server-dev-9.3 libpq-dev libjpeg-dev python-dev python-pip python-virtualenv git`
 
 ##Configuracion rápida PostgreSQL
 
