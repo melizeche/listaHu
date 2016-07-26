@@ -55,7 +55,6 @@ docs/_build/
 target/
 
 #mine
-backend/migrations/
 db.sqlite3
 listahu/settings.py
 media/
