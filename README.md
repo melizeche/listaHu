@@ -1,21 +1,24 @@
 #Requerimientos
-`Django==1.7.4`
+`Django==1.8.14`
 
-`Pillow==2.7.0`
+`Pillow==2.9.0`
 
-`django-filter==0.9.2`
+`django-filter==0.11.0`
 
 `djangorestframework==3.0.5`
 
 `psycopg2==2.6`
 
-`vobject==0.6.6`
+`vobject==0.9.2`
 
-`django-adminactions`
+`django-adminactions==1.1`
 
-`django-admin-bootstrapped`
+`django-admin-bootstrapped==2.5.7`
 
-`django-cors-headers`
+`django-cors-headers==1.1.0`
+
+`django-autoslug==1.9.3`
+
 
 #Instalación
 
