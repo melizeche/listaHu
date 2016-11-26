@@ -102,21 +102,24 @@ def vcard2(name, lista):
 
 
 def create_thumbnail(imagepath, basewidth, force=False):
-    thumbfilename = "%s_th%s" % (path.splitext(imagepath)[0],path.splitext(imagepath)[1])
+    thumbfilename = "%s_th%s" % (path.splitext(
+        imagepath)[0], path.splitext(imagepath)[1])
     if not path.exists(thumbfilename) or force:
         try:
             img = Image.open(imagepath)
             wpercent = (basewidth / float(img.size[0]))
             hsize = int((float(img.size[1]) * float(wpercent)))
             img = img.resize((basewidth, hsize), Image.ANTIALIAS)
-            thumbfilename = "%s_th%s" % (path.splitext(imagepath)[0],path.splitext(imagepath)[1])
+            thumbfilename = "%s_th%s" % (path.splitext(
+                imagepath)[0], path.splitext(imagepath)[1])
             img.save(thumbfilename)
             return True
         except:
             return False
     return False
 
+
 def thumbnail_all(directory):
     if path.isdir(directory):
-        for infile in glob.glob(directory+"/*.*"):
-            print create_thumbnail(infile,200), infile
+        for infile in glob.glob(directory + "/*.*"):
+            print create_thumbnail(infile, 200), infile

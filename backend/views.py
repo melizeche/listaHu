@@ -40,6 +40,19 @@ class ListaViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
+class ListaUnicaViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    queryset = Denuncia.objects.filter(activo=True)
+    serializer_class = ListaSerializer
+    filter_class = DenunciaFilter
+
+    def list(self, request):
+        query = DenunciaFilter(
+            request.GET, queryset=Denuncia.objects.filter(activo=True).distinct('numero'))
+        serializer = DenunciaSerializer(query, many=True)
+        return Response(serializer.data)
+
+
 def home(request):
     fail = ""
     if request.method == 'POST':
