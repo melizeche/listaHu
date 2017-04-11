@@ -13,7 +13,7 @@ CC BY-NC-SA 4.0 license.
 * http://www.hoy.com.py/nacionales/lista-huu-crean-base-de-datos-de-estafadores-y-vendedores-molestos
 
 ## Recognitions
-* WORLD SUMMIT AWARD PARAGUAY 2015: WINNER IN E-GOVERNMENT & OPEN DATA
+* World Summit Award Paraguay 2015: Winner In E-Government & Open Data
 
 ## Requirements
 
