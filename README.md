@@ -1,5 +1,19 @@
-# ListaHu
+# ListaHũ
 Lista Hũ is a project that aims to create a crowdsourced database of sms spammers and blackmailers, so the numbers can be blocked in the future.
+
+Lista Hũ has an RESTful API to query the database and the dataset is released under the
+CC BY-NC-SA 4.0 license.
+
+
+## Lista Hũ In the press
+* https://www.youtube.com/watch?v=yRB54L6wyGI
+* http://www.lanacion.com.py/2016/04/22/lista-hu-logro-detectar-casos-de-estafa-y-extorsion/
+* http://www.abc.com.py/ciencia/lista-h-contra-la-estafa-1339474.html
+* http://www.extra.com.py/actualidad/surge-lista-hu-contra-estafas-y-extorsiones.html
+* http://www.hoy.com.py/nacionales/lista-huu-crean-base-de-datos-de-estafadores-y-vendedores-molestos
+
+## Recognitions
+* WORLD SUMMIT AWARD PARAGUAY 2015: WINNER IN E-GOVERNMENT & OPEN DATA
 
 ## Requirements
 
@@ -65,4 +79,6 @@ apt-get install postgresql postgresql-contrib postgresql-server-dev libpq-dev li
 
 ## TODO
 
+- Python 3+ support
+- Unit tests
 - Documentation(APIs, Configuration Options)
