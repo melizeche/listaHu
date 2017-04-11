@@ -13,7 +13,7 @@ from rest_framework import viewsets, filters, generics
 from rest_framework.response import Response
 from rest_framework.permissions import (IsAuthenticated, IsAuthenticatedOrReadOnly,
                                         DjangoModelPermissions, DjangoObjectPermissions, IsAdminUser, AllowAny)
-from serializers import DenunciaSerializer, ListaSerializer
+from serializers import DenunciaSerializer, ListaSerializer, ListaUnicaSerializer
 from backend.models import Denuncia, Estadistica, Tipo
 from backend.filters import DenunciaFilter
 from forms import DenunciaForm
@@ -43,12 +43,17 @@ class ListaViewSet(viewsets.ModelViewSet):
 class ListaUnicaViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Denuncia.objects.filter(activo=True)
-    serializer_class = ListaSerializer
+    serializer_class = ListaUnicaSerializer
     filter_class = DenunciaFilter
 
     def list(self, request):
+        queryset = Denuncia.objects.filter(activo=True).order_by('added')
+        print queryset
+        queryset2 = queryset.distinct('numero')
+        print queryset2
         query = DenunciaFilter(
-            request.GET, queryset=Denuncia.objects.filter(activo=True).distinct('numero'))
+            request.GET, queryset=queryset)
+        #print query.objects.all()
         serializer = DenunciaSerializer(query, many=True)
         return Response(serializer.data)
 
