@@ -1,8 +1,16 @@
-#Requerimientos
-`Django==1.8.14`
+# ListaHu
+Lista Hũ is a project that aims to create a crowdsourced database of sms spammers and blackmailers, so the numbers can be blocked in the future.
 
+## Requirements
+
+### Main Requirements
+* Python 2.7.5+
+* PostgreSQL 9.3+
+* Django 1.8.14
+
+### Other libs
 `Pillow==2.9.0`
-
+  
 `django-filter==0.11.0`
 
 `djangorestframework==3.0.5`
@@ -20,36 +28,41 @@
 `django-autoslug==1.9.3`
 
 
-#Instalación
+## Instructions
 
-`git clone git@github.com:melizeche/listahu.git`
 
-`virtualenv env`
+```
+git clone git@github.com:melizeche/listahu.git
+cd listahu
+virtualenv env
+source env/bin/activate 
+pip install -r requirements.txt
+```
+Configurate listahu/settings.py (Config example listahu/settings.py.example)
 
-`source env/bin/activate `
+```
+./manage.py makemigrations backend
+./manage.py migrate
+./manage.py createsuperuser
+```
+## Optional
 
-`pip install -r requirements.txt`
+PostgreSQL is recommended but you can use any database supported by Django(e.g. MySQL, SQLite) 
 
-Configurar listahu/settings.py
+### Necesary packages (Ubuntu/Debian)
 
-`./manage.py makemigrations backend`
+```
+apt-get install postgresql postgresql-contrib postgresql-server-dev libpq-dev libjpeg-dev python-dev python-pip python-virtualenv git
+```
 
-`./manage.py migrate`
-
-`./manage.py createsuperuser`
-
-#Opcional
-
-Se recomienda PostgreSQL pero se puede utilizar cualquier base de datos soportada por Django(ej. MySQL, SQLite) 
-
-##Paquetes necesarios (Ubuntu/Debian)
-
-`apt-get install postgresql-9.3 postgresql-contrib-9.3 postgresql-server-dev-9.3 libpq-dev libjpeg-dev python-dev python-pip python-virtualenv git`
-
-##Configuracion rápida PostgreSQL
+### Quick PostgreSQL configuration
 
 `sudo -u postgres psql;`
 
-`CREATE USER usuario WITH PASSWORD 'password';`(cambiar por el usuario y password deseado)
+`CREATE USER usuario WITH PASSWORD 'password';` (replace 'usuario' and 'password' with desired username and password)
 
 `sudo -u postgres createdb -O usuario listahu`
+
+## TODO
+
+- Documentation(APIs, Configuration Options)
