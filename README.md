@@ -5,7 +5,7 @@ Lista Hũ has an RESTful API to query the database and the dataset is released u
 CC BY-NC-SA 4.0 license.
 
 
-## Lista Hũ In the press
+## Lista Hũ in the press
 * https://www.youtube.com/watch?v=yRB54L6wyGI
 * http://www.lanacion.com.py/2016/04/22/lista-hu-logro-detectar-casos-de-estafa-y-extorsion/
 * http://www.abc.com.py/ciencia/lista-h-contra-la-estafa-1339474.html
@@ -82,3 +82,15 @@ apt-get install postgresql postgresql-contrib postgresql-server-dev libpq-dev li
 - Python 3+ support
 - Unit tests
 - Documentation(APIs, Configuration Options)
+
+## Contributing
+
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request :D
+
+## License
+
+This project is licensed under the terms of the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details
