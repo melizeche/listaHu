@@ -12,7 +12,7 @@ CC BY-NC-SA 4.0 license.
 * http://www.extra.com.py/actualidad/surge-lista-hu-contra-estafas-y-extorsiones.html
 * http://www.hoy.com.py/nacionales/lista-huu-crean-base-de-datos-de-estafadores-y-vendedores-molestos
 
-## Recognitions
+## Awards
 * World Summit Award Paraguay 2015: Winner In E-Government & Open Data
 
 ## Requirements
