@@ -48,12 +48,12 @@ class ListaUnicaViewSet(viewsets.ModelViewSet):
 
     def list(self, request):
         queryset = Denuncia.objects.filter(activo=True).order_by('added')
-        print queryset
+        print(queryset)
         queryset2 = queryset.distinct('numero')
-        print queryset2
+        print(queryset2)
         query = DenunciaFilter(
             request.GET, queryset=queryset)
-        #print query.objects.all()
+        # print query.objects.all()
         serializer = DenunciaSerializer(query, many=True)
         return Response(serializer.data)
 
@@ -67,7 +67,6 @@ def home(request):
             form.save()
             messages.success(request, "Se agregó correctamente!")
             return HttpResponseRedirect('/buscar/%s' % x['numero'])
-            return HttpResponse("Agregado con exito! <a href='/'>Volver</a>")
         else:
             fail = 'fail'
 
@@ -79,8 +78,6 @@ def home(request):
         cant = ""
 
     return render(request, 'index.html', {'form': form, 'denuncias': cant, 'fail': fail})
-
-    return HttpResponse("AAAAAAAAAAA")
 
 
 def buscar(request, **kargs):
@@ -137,11 +134,9 @@ def download(request, **kwargs):
             return response
 
     return render(request, 'descargar.html', {'msg': 'msg'})
-    return HttpResponse("<h2>Descargar:</h2><a href='vcard'>vCard</a><br><a href='csv'>CSV</a>")
 
 
 def denuncia(request):
-
     if request.method == 'POST':
         form = DenunciaForm(request.POST, request.FILES)
         if form.is_valid():

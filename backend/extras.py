@@ -32,8 +32,11 @@ def getCSV(datos):
     writer.writerow(['#', 'Numero', 'Tipo', 'Comentarios',
                      'Captura', 'Fecha_Denuncia'])
     for count, fila in enumerate(datos):
-        writer.writerow([count + 1, fila.numero, unicodedata.normalize('NFKD', fila.tipo.titulo).encode('ASCII', 'ignore'),
-                         unicodedata.normalize('NFKD', fila.desc).encode('ASCII', 'ignore'), 'http://listahu.org/media/%s' % fila.screenshot, fila.added.astimezone(timezone.get_current_timezone()).strftime("%Y/%m/%d %H:%M")])
+        writer.writerow(
+            [count + 1, fila.numero, unicodedata.normalize('NFKD', fila.tipo.titulo).encode('ASCII', 'ignore'),
+             unicodedata.normalize('NFKD', fila.desc).encode('ASCII', 'ignore'),
+             'http://listahu.org/media/%s' % fila.screenshot,
+             fila.added.astimezone(timezone.get_current_timezone()).strftime("%Y/%m/%d %H:%M")])
     return si.getvalue()
 
 
@@ -48,11 +51,11 @@ def vcard(name, lista):
     c = 0
     separado = zip(*[iter(list(lista))] * 200)
     partes = len(list(lista)) / 100
-    print partes + 1
+    print(partes + 1)
     separado = split_list(list(lista), partes + 1)
     jj = ""
     for sep in separado:
-        print count
+        print(count)
         j = vobject.vCard()
         o = j.add('fn')
         o.value = "Lista Negra IGNORAR" + str(count)
@@ -72,33 +75,28 @@ def vcard(name, lista):
                 o.value = "+" + num.numero
         count += 1
         jj += j.serialize()
-        print "vCard" + str(count) + " " + str(c) + " numeros"
+        print("vCard" + str(count) + " " + str(c) + " numeros")
         c = 0
 
-    return(jj)
+    return (jj)
 
 
-def vcard2(name, lista):
+def create_vcard(name, lista):
     count = 0
-    j = vobject.vCard()
-    o = j.add('fn')
-    o.value = "Lista Negra IGNORAR" + str(count)
+    card = vobject.vCard()
+    obj = card.add('fn')
+    obj.value = "Lista Negra IGNORAR" + str(count)
 
-    o = j.add('n')
-    o.value = vobject.vcard.Name(
+    obj = card.add('n')
+    obj.value = vobject.vcard.Name(
         family='IGNORAR', given='Lista Negra' + str(count))
 
     for i, num in enumerate(lista):
         count += 1
-        o = j.add('tel')
-        o.type_param = "cell"
-        if isinstance(num, dict):
-            o.value = "+" + num['numero']
-        else:
-            o.value = "+" + num.numero
-
-        print count
-    return(j.serialize())
+        obj = card.add('tel')
+        obj.type_param = "cell"
+        obj.value = "+" + num['numero']
+    return (card.serialize())
 
 
 def create_thumbnail(imagepath, basewidth, force=False):
@@ -122,4 +120,4 @@ def create_thumbnail(imagepath, basewidth, force=False):
 def thumbnail_all(directory):
     if path.isdir(directory):
         for infile in glob.glob(directory + "/*.*"):
-            print create_thumbnail(infile, 200), infile
+            print(create_thumbnail(infile, 200), infile)

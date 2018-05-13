@@ -27,7 +27,7 @@ class ListaSerializer(serializers.ModelSerializer):
         fields = ('id', 'numero', 'tipo', 'screenshot', 'added')
 
 
-class  ListaUnicaSerializer(serializers.ModelSerializer):
+class ListaUnicaSerializer(serializers.ModelSerializer):
     tipo = serializers.SlugRelatedField(
         read_only=True,
         slug_field='titulo'

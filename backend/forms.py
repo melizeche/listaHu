@@ -5,7 +5,7 @@ from models import Denuncia
 
 error_numero = {
     'min_length': 'No se aceptan números cortos, uno puede desuscribirse de estos numeros contactando con su telefónica, '
-    'introducí en al menos 10 caracteres, ej. 09XXXXXXXX'
+                  'introducí en al menos 10 caracteres, ej. 09XXXXXXXX'
 }
 error_screen = {
     'required': 'Es obligatorio agregar la captura de pantalla'
