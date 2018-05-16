@@ -18,28 +18,24 @@ CC BY-NC-SA 4.0 license.
 ## Requirements
 
 ### Main Requirements
-* Python 2.7.5+
+* Python 3.5+
 * PostgreSQL 9.3+
-* Django 1.8.14
+* Django 1.8.19
 
 ### Other libs
-`Pillow==2.9.0`
-  
-`django-filter==0.11.0`
-
-`djangorestframework==3.0.5`
-
-`psycopg2==2.6`
-
-`vobject==0.9.2`
-
-`django-adminactions==1.1`
-
-`django-admin-bootstrapped==2.5.7`
-
-`django-cors-headers==1.1.0`
-
-`django-autoslug==1.9.3`
+```
+Django==1.8.19
+Pillow==5.1.0
+django-filter==0.11.0
+djangorestframework==3.1.3
+psycopg2==2.7.4
+vobject==0.9.2
+django-adminactions==1.5
+django-admin-bootstrapped==2.5.7
+django-cors-headers==1.1.0
+django-autoslug==1.9.3
+gunicorn==19.8.1
+```
 
 
 ## Instructions
