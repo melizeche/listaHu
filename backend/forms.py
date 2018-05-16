@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from django.forms import ModelForm
 from django import forms
-from models import Denuncia
+from .models import Denuncia
 
 error_numero = {
     'min_length': 'No se aceptan números cortos, uno puede desuscribirse de estos numeros contactando con su telefónica, '

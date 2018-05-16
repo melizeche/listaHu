@@ -13,11 +13,11 @@ from rest_framework import viewsets, filters, generics
 from rest_framework.response import Response
 from rest_framework.permissions import (IsAuthenticated, IsAuthenticatedOrReadOnly,
                                         DjangoModelPermissions, DjangoObjectPermissions, IsAdminUser, AllowAny)
-from serializers import DenunciaSerializer, ListaSerializer, ListaUnicaSerializer
+from .serializers import DenunciaSerializer, ListaSerializer, ListaUnicaSerializer
 from backend.models import Denuncia, Estadistica, Tipo
 from backend.filters import DenunciaFilter
-from forms import DenunciaForm
-from extras import validateNumber, vcard, vcard2, getCSV
+from .forms import DenunciaForm
+from .extras import validateNumber, vcard, getCSV
 
 
 class DenunciaViewSet(viewsets.ModelViewSet):
@@ -94,7 +94,7 @@ def buscar(request, **kargs):
                 withthumbs.append((denuncia, "%s_th%s" % (path.splitext(str(denuncia.screenshot))[0],
                                                           path.splitext(str(denuncia.screenshot))[1])))
         else:
-            msg = u"No se encontró %s en la base de datos" % numero
+            msg = "No se encontró %s en la base de datos" % numero
 
     return render(request, 'buscar.html', {'msg': msg, 'withthumbs': withthumbs})
 

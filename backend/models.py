@@ -29,7 +29,7 @@ class Estadistica(models.Model):
     valor = models.IntegerField(null=True, blank=True, default=0)
     otro = models.CharField(max_length=200, null=True, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.nombre
 
 
@@ -38,7 +38,7 @@ class Tipo(models.Model):
     slug = AutoSlugField(populate_from='titulo', unique=True, blank=True, null=True)
     desc = models.TextField(null=True, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.titulo
 
 
@@ -78,8 +78,8 @@ class Denuncia(models.Model):
         self.numero = self.validateNumber(self.numero)
         super(Denuncia, self).save(*args, **kwargs)
 
-    def __unicode__(self):
-        return self.numero + " - " + unicode(self.tipo)
+    def __str__(self):
+        return self.numero + " - " + str(self.tipo)
 
 
 def update_stats(sender, instance, created, **kwargs):

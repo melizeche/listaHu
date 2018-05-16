@@ -3,8 +3,11 @@ import vobject
 import csv
 import datetime
 import unicodedata
-import cStringIO
 import glob
+try:
+    from io import StringIO
+except ImportError:
+    from io import StringIO
 
 from os import path
 from PIL import Image
@@ -27,7 +30,7 @@ def validateNumber(number):
 
 
 def getCSV(datos):
-    si = cStringIO.StringIO()
+    si = StringIO()
     writer = csv.writer(si, dialect='excel')
     writer.writerow(['#', 'Numero', 'Tipo', 'Comentarios',
                      'Captura', 'Fecha_Denuncia'])
@@ -49,9 +52,9 @@ def split_list(alist, wanted_parts=1):
 def vcard(name, lista):
     count = 1
     c = 0
-    separado = zip(*[iter(list(lista))] * 200)
-    partes = len(list(lista)) / 100
-    print(partes + 1)
+    separado = list(zip(*[iter(list(lista))] * 200))
+    partes = len(list(lista)) // 100
+    print((partes + 1))
     separado = split_list(list(lista), partes + 1)
     jj = ""
     for sep in separado:
@@ -75,7 +78,7 @@ def vcard(name, lista):
                 o.value = "+" + num.numero
         count += 1
         jj += j.serialize()
-        print("vCard" + str(count) + " " + str(c) + " numeros")
+        print(("vCard" + str(count) + " " + str(c) + " numeros"))
         c = 0
 
     return (jj)
@@ -120,4 +123,4 @@ def create_thumbnail(imagepath, basewidth, force=False):
 def thumbnail_all(directory):
     if path.isdir(directory):
         for infile in glob.glob(directory + "/*.*"):
-            print(create_thumbnail(infile, 200), infile)
+            print((create_thumbnail(infile, 200), infile))
