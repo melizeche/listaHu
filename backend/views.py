@@ -47,13 +47,13 @@ class ListaUnicaViewSet(viewsets.ModelViewSet):
     filter_class = DenunciaFilter
 
     def list(self, request):
-        queryset = Denuncia.objects.filter(activo=True).order_by('added')
-        print(queryset)
-        queryset2 = queryset.distinct('numero')
-        print(queryset2)
+        raw_queryset = Denuncia.objects.raw(
+            'select * from (select distinct on (numero) * from backend_denuncia)' \
+            ' distinct_num  order by distinct_num.added')
+        ids = [denuncia.id for denuncia in raw_queryset]
+        queryset = Denuncia.objects.filter(id__in=ids)
         query = DenunciaFilter(
             request.GET, queryset=queryset)
-        # print query.objects.all()
         serializer = DenunciaSerializer(query, many=True)
         return Response(serializer.data)
 
