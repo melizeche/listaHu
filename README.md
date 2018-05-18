@@ -18,7 +18,7 @@ CC BY-NC-SA 4.0 license.
 ## Requirements
 
 ### Main Requirements
-* Python 3.5+
+* Python 3.5+ (No longer compatible with Python 2.7, finally!)
 * PostgreSQL 9.3+
 * Django 1.8.19
 
@@ -75,7 +75,7 @@ apt-get install postgresql postgresql-contrib postgresql-server-dev libpq-dev li
 
 ## TODO
 
-- Python 3+ support
+- ~Python 3+ support~
 - Unit tests
 - Documentation(APIs, Configuration Options)
 
