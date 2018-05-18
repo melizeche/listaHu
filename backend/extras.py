@@ -36,7 +36,7 @@ def getCSV(datos):
             fila.numero,
             fila.tipo.titulo,
             fila.desc,
-            'http://listahu.org/media/%s' % fila.screenshot,
+            'https://listahu.org/media/%s' % fila.screenshot,
             fila.added.astimezone(timezone.get_current_timezone()).strftime("%Y-%m-%d %H:%M")])
     return si.getvalue()
 
