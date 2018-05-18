@@ -5,8 +5,8 @@ import django_filters
 
 from backend.models import Denuncia, Estadistica, Tipo
 
-class DenunciaFilter(django_filters.FilterSet):
 
+class DenunciaFilter(django_filters.FilterSet):
     tipo = django_filters.CharFilter(name='tipo__slug')
     numero = django_filters.CharFilter(name='numero', lookup_type='icontains')
     id_from = django_filters.NumberFilter(name='id', lookup_type='gte')
@@ -19,4 +19,4 @@ class DenunciaFilter(django_filters.FilterSet):
 
     class Meta:
         model = Denuncia
-        fields = ('tipo', 'numero', 'id', 'added', 'check' )
+        fields = ('tipo', 'numero', 'id', 'added', 'check')

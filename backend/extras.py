@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import vobject
 import csv
-import datetime
 import glob
 
 from io import StringIO
@@ -33,11 +32,11 @@ def getCSV(datos):
     for count, fila in enumerate(datos):
         writer.writerow(
             [count + 1,
-            fila.numero,
-            fila.tipo.titulo,
-            fila.desc,
-            'https://listahu.org/media/%s' % fila.screenshot,
-            fila.added.astimezone(timezone.get_current_timezone()).strftime("%Y-%m-%d %H:%M")])
+             fila.numero,
+             fila.tipo.titulo,
+             fila.desc,
+             'https://listahu.org/media/%s' % fila.screenshot,
+             fila.added.astimezone(timezone.get_current_timezone()).strftime("%Y-%m-%d %H:%M")])
     return si.getvalue()
 
 
