@@ -2,13 +2,9 @@
 import vobject
 import csv
 import datetime
-import unicodedata
 import glob
-try:
-    from io import StringIO
-except ImportError:
-    from io import StringIO
 
+from io import StringIO
 from os import path
 from PIL import Image
 from django.utils import timezone
@@ -31,15 +27,17 @@ def validateNumber(number):
 
 def getCSV(datos):
     si = StringIO()
-    writer = csv.writer(si, dialect='excel')
+    writer = csv.writer(si, dialect='excel', quoting=csv.QUOTE_NONNUMERIC)
     writer.writerow(['#', 'Numero', 'Tipo', 'Comentarios',
                      'Captura', 'Fecha_Denuncia'])
     for count, fila in enumerate(datos):
         writer.writerow(
-            [count + 1, fila.numero, unicodedata.normalize('NFKD', fila.tipo.titulo).encode('ASCII', 'ignore'),
-             unicodedata.normalize('NFKD', fila.desc).encode('ASCII', 'ignore'),
-             'http://listahu.org/media/%s' % fila.screenshot,
-             fila.added.astimezone(timezone.get_current_timezone()).strftime("%Y/%m/%d %H:%M")])
+            [count + 1,
+            fila.numero,
+            fila.tipo.titulo,
+            fila.desc,
+            'http://listahu.org/media/%s' % fila.screenshot,
+            fila.added.astimezone(timezone.get_current_timezone()).strftime("%Y-%m-%d %H:%M")])
     return si.getvalue()
 
 
