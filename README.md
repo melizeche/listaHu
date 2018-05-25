@@ -76,6 +76,7 @@ apt-get install postgresql postgresql-contrib postgresql-server-dev libpq-dev li
 ## TODO
 
 - ~Python 3+ support~
+- Upgrade Django version
 - Unit tests
 - Documentation(APIs, Configuration Options)
 
