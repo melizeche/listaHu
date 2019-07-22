@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.urls import include, path
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
@@ -14,24 +14,23 @@ router.register(r'numeros', views.ListaUnicaViewSet)
 
 admin.site.site_header = 'Administrador de denuncias'
 
-urlpatterns = patterns('',
-    # Examples:
-    url(r'^$', 'backend.views.home', name='home'),
-    url(r'^buscar/(?P<numero>.+)/$', views.buscar, name='buscar'),
-    url(r'^buscar/$', views.buscar, name='buscar'),
-    url(r'^navegar/$', views.navegar, name='navegar'),
-    url(r'^denuncia/$', views.denuncia, name='denuncia'),
-    url(r'^descargar/$', views.download, name='descargar'),
-    url(r'^top/$', views.topDenuncias, name='top'),
-    url(r'^descargar/(?P<formato>.+)/$', views.download, name='archivos'),
-    url(r'^contacto/$', TemplateView.as_view(template_name='contacto.html')),
-    url(r'^legal/$', TemplateView.as_view(template_name='legal.html')),
-    url(r'^api/$', TemplateView.as_view(template_name='api.html')),
-    url(r'^adminactions/', include('adminactions.urls')),
-    url(r'^api/v1/', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^admin/', include(admin.site.urls)),
-)
+urlpatterns = [
+    path(r'^$', views.home, name='home'),
+    path(r'^buscar/(?P<numero>.+)/$', views.buscar, name='buscar'),
+    path(r'^buscar/$', views.buscar, name='buscar'),
+    path(r'^navegar/$', views.navegar, name='navegar'),
+    path(r'^denuncia/$', views.denuncia, name='denuncia'),
+    path(r'^descargar/$', views.download, name='descargar'),
+    path(r'^top/$', views.topDenuncias, name='top'),
+    path(r'^descargar/(?P<formato>.+)/$', views.download, name='archivos'),
+    path(r'^contacto/$', TemplateView.as_view(template_name='contacto.html')),
+    path(r'^legal/$', TemplateView.as_view(template_name='legal.html')),
+    path(r'^api/$', TemplateView.as_view(template_name='api.html')),
+    #path(r'^adminactions/', include('adminactions.urls')),
+    path(r'^api/v1/', include(router.urls)),
+    path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path(r'^admin/', admin.site.urls),
+    ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()
