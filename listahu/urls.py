@@ -15,21 +15,21 @@ router.register(r'numeros', views.ListaUnicaViewSet)
 admin.site.site_header = 'Administrador de denuncias'
 
 urlpatterns = [
-    path(r'^$', views.home, name='home'),
-    path(r'^buscar/(?P<numero>.+)/$', views.buscar, name='buscar'),
-    path(r'^buscar/$', views.buscar, name='buscar'),
-    path(r'^navegar/$', views.navegar, name='navegar'),
-    path(r'^denuncia/$', views.denuncia, name='denuncia'),
-    path(r'^descargar/$', views.download, name='descargar'),
-    path(r'^top/$', views.topDenuncias, name='top'),
-    path(r'^descargar/(?P<formato>.+)/$', views.download, name='archivos'),
-    path(r'^contacto/$', TemplateView.as_view(template_name='contacto.html')),
-    path(r'^legal/$', TemplateView.as_view(template_name='legal.html')),
-    path(r'^api/$', TemplateView.as_view(template_name='api.html')),
-    #path(r'^adminactions/', include('adminactions.urls')),
-    path(r'^api/v1/', include(router.urls)),
-    path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path(r'^admin/', admin.site.urls),
+    path(r'', views.home, name='home'),
+    path(r'buscar/<str:numero>/', views.buscar, name='buscar'),
+    path(r'buscar/', views.buscar, name='buscar'),
+    path(r'navegar/', views.navegar, name='navegar'),
+    path(r'denuncia/', views.denuncia, name='denuncia'),
+    path(r'descargar/', views.download, name='descargar'),
+    path(r'top/', views.topDenuncias, name='top'),
+    path(r'descargar/<str:formato>/', views.download, name='archivos'),
+    path(r'contacto/', TemplateView.as_view(template_name='contacto.html')),
+    path(r'legal/', TemplateView.as_view(template_name='legal.html')),
+    path(r'api/', TemplateView.as_view(template_name='api.html')),
+    #path(r'adminactions/', include('adminactions.urls')),
+    path(r'api/v1/', include(router.urls)),
+    path(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path(r'admin/', admin.site.urls),
     ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
