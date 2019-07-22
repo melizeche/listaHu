@@ -9,6 +9,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
+venv
 build/
 develop-eggs/
 dist/
@@ -54,6 +55,7 @@ docs/_build/
 # PyBuilder
 target/
 
+.idea
 #mine
 db.sqlite3
 listahu/settings.py
