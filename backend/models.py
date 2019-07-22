@@ -43,7 +43,7 @@ class Tipo(models.Model):
 
 
 class Denuncia(models.Model):
-    tipo = models.ForeignKey(Tipo)
+    tipo = models.ForeignKey(Tipo, on_delete=models.PROTECT)
     numero = models.CharField(max_length=30,
                               help_text="Podes ingresar como 09XXXXXXXX, 5959XXXXXXXX o +5959XXXXXXXX")
     screenshot = models.ImageField('Captura de pantalla', upload_to=rename,
