@@ -11,8 +11,8 @@ load_posts("/api/v1/denuncias/");
 
 
 function convert_to_readable_date(date_time_string) {
-    var newDate = moment(date_time_string).format('DD/MM/YYYY, h:mm:ss a')
-    return newDate
+    var newDate = moment(date_time_string).format('DD/MM/YYYY, h:mm:ss a');
+    return newDate;
 }
 // Load all posts on page load
 function hideDivs () {
@@ -54,7 +54,8 @@ function load_posts(url) {
         // handle a successful response
 
         success : function(json) {
-        	results = json.results
+            //console.log(json);
+        	results = json;
         	total = json.count;
         	cant = cant + results.length;
         	next=json.next;
