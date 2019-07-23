@@ -55,7 +55,9 @@ docs/_build/
 # PyBuilder
 target/
 
+#IDEs
 .idea
+.vscode
 #mine
 db.sqlite3
 listahu/settings.py
