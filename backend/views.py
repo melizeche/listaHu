@@ -34,7 +34,7 @@ class ListaViewSet(viewsets.ModelViewSet):
     def list(self, request):
         query = DenunciaFilter(
             request.GET, queryset=Denuncia.objects.filter(activo=True))
-        serializer = DenunciaSerializer(query, many=True)
+        serializer = DenunciaSerializer(query.qs, many=True)
         return Response(serializer.data)
 
 
@@ -52,7 +52,7 @@ class ListaUnicaViewSet(viewsets.ModelViewSet):
         queryset = Denuncia.objects.filter(id__in=ids)
         query = DenunciaFilter(
             request.GET, queryset=queryset)
-        serializer = DenunciaSerializer(query, many=True)
+        serializer = DenunciaSerializer(query.qs, many=True)
         return Response(serializer.data)
 
 
