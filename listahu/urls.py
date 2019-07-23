@@ -1,4 +1,4 @@
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
@@ -22,7 +22,7 @@ urlpatterns = [
     path(r'denuncia/', views.denuncia, name='denuncia'),
     path(r'descargar/', views.download, name='descargar'),
     path(r'top/', views.topDenuncias, name='top'),
-    path(r'descargar/<str:formato>/', views.download, name='archivos'),
+    re_path(r'^descargar/(?P<formato>.+)/$', views.download, name='archivos'),
     path(r'contacto/', TemplateView.as_view(template_name='contacto.html')),
     path(r'legal/', TemplateView.as_view(template_name='legal.html')),
     path(r'api/', TemplateView.as_view(template_name='api.html')),
