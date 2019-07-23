@@ -62,6 +62,7 @@ class Denuncia(models.Model):
         number = number.replace("-", "")
         number = number.replace(")", "")
         number = number.replace("(", "")
+        number = number.replace("O", "0")
         if number.startswith('09'):
             new = "5959" + number[2:]
         elif number.startswith('+'):
@@ -76,6 +77,8 @@ class Denuncia(models.Model):
 
     def save(self, *args, **kwargs):
         self.numero = self.validateNumber(self.numero)
+        if not self.numero.isdigit():
+            self.activo=False
         super(Denuncia, self).save(*args, **kwargs)
 
     def __str__(self):
