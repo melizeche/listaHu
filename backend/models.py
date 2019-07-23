@@ -58,6 +58,7 @@ class Denuncia(models.Model):
         'Agregado', auto_now_add=True, null=True, blank=True)
 
     def validateNumber(self, number):
+        number = number.replace('\u202d','').replace('\u202c','')
         number = number.replace(" ", "")
         number = number.replace("-", "")
         number = number.replace(")", "")
