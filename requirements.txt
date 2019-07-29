@@ -9,3 +9,6 @@ Pillow==6.1.0
 psycopg2-binary==2.8.3
 unicodecsv==0.14.1
 vobject==0.9.6.1
+black
+mypy
+mypy-extensions
