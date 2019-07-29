@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 from django.db import models
 import os
 import time
@@ -6,8 +5,6 @@ from django.db.models.signals import post_save, pre_save
 from django.conf import settings
 from autoslug import AutoSlugField
 from backend.extras import create_thumbnail
-
-# Create your models here.
 
 THUMBNAIL_BASEWIDTH = 200
 
@@ -19,8 +16,13 @@ def rename(instance, filename):
     if not instance.numero:
         format = time.strftime("%Y%m%d%H%M", time.localtime()) + "-" + filename
     else:
-        format = str(instance.numero) + "_" + \
-                 time.strftime("%Y%m%d%H%M", time.localtime()) + "_" + filename
+        format = (
+            str(instance.numero)
+            + "_"
+            + time.strftime("%Y%m%d%H%M", time.localtime())
+            + "_"
+            + filename
+        )
     return os.path.join(path, format)
 
 
@@ -35,7 +37,7 @@ class Estadistica(models.Model):
 
 class Tipo(models.Model):
     titulo = models.CharField(max_length=30)
-    slug = AutoSlugField(populate_from='titulo', unique=True, blank=True, null=True)
+    slug = AutoSlugField(populate_from="titulo", unique=True, blank=True, null=True)
     desc = models.TextField(null=True, blank=True)
 
     def __str__(self):
@@ -43,28 +45,38 @@ class Tipo(models.Model):
 
 
 class Denuncia(models.Model):
-    tipo = models.ForeignKey(Tipo)
-    numero = models.CharField(max_length=30,
-                              help_text="Podes ingresar como 09XXXXXXXX, 5959XXXXXXXX o +5959XXXXXXXX")
-    screenshot = models.ImageField('Captura de pantalla', upload_to=rename,
-                                   help_text="Si fue una llamada hacer captura del registro de llamadas")
-    desc = models.TextField('Descripción o comentarios al respecto', null=True, blank=True,
-                            help_text="Completar especialmente si fue una llamada")
+    tipo = models.ForeignKey(Tipo, on_delete=models.PROTECT)
+    numero = models.CharField(
+        max_length=30,
+        help_text="Podes ingresar como 09XXXXXXXX, 5959XXXXXXXX o +5959XXXXXXXX",
+    )
+    screenshot = models.ImageField(
+        "Captura de pantalla",
+        upload_to=rename,
+        help_text="Si fue una llamada hacer captura del registro de llamadas",
+    )
+    desc = models.TextField(
+        "Descripción o comentarios al respecto",
+        null=True,
+        blank=True,
+        help_text="Completar especialmente si fue una llamada",
+    )
     check = models.NullBooleanField(null=True, default=False)
     votsi = models.IntegerField(null=True, blank=True, default=0)
     votno = models.IntegerField(null=True, blank=True, default=0)
     activo = models.BooleanField(default=True)
-    added = models.DateTimeField(
-        'Agregado', auto_now_add=True, null=True, blank=True)
+    added = models.DateTimeField("Agregado", auto_now_add=True, null=True, blank=True)
 
     def validateNumber(self, number):
+        number = number.replace("\u202d", "").replace("\u202c", "")
         number = number.replace(" ", "")
         number = number.replace("-", "")
         number = number.replace(")", "")
         number = number.replace("(", "")
-        if number.startswith('09'):
+        number = number.replace("O", "0")
+        if number.startswith("09"):
             new = "5959" + number[2:]
-        elif number.startswith('+'):
+        elif number.startswith("+"):
             new = number[1:]
         else:
             new = number
@@ -76,6 +88,8 @@ class Denuncia(models.Model):
 
     def save(self, *args, **kwargs):
         self.numero = self.validateNumber(self.numero)
+        if not self.numero.isdigit():
+            self.activo = False
         super(Denuncia, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -84,7 +98,7 @@ class Denuncia(models.Model):
 
 def update_stats(sender, instance, created, **kwargs):
     try:
-        cant = Estadistica.objects.get(nombre='denuncias')
+        cant = Estadistica.objects.get(nombre="denuncias")
     except Estadistica.DoesNotExist:
         cant = None
     if created:
@@ -101,7 +115,9 @@ def update_stats(sender, instance, created, **kwargs):
 def thumbnail(sender, instance, created, **kwargs):
     if created:
         try:
-            img = create_thumbnail(settings.MEDIA_ROOT + str(instance.screenshot), THUMBNAIL_BASEWIDTH)
+            img = create_thumbnail(
+                settings.MEDIA_ROOT + str(instance.screenshot), THUMBNAIL_BASEWIDTH
+            )
         except:
             pass
 

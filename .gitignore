@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *.pyc
+.mypy_cache
 
 # C extensions
 *.so
@@ -9,6 +10,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
+venv
 build/
 develop-eggs/
 dist/
@@ -54,8 +56,12 @@ docs/_build/
 # PyBuilder
 target/
 
+#IDEs
+.idea
+.vscode
 #mine
 db.sqlite3
 listahu/settings.py
+conf/settings.py
 media/
 gunicorn_start.sh

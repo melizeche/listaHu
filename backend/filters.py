@@ -7,15 +7,15 @@ from backend.models import Denuncia, Estadistica, Tipo
 
 
 class DenunciaFilter(django_filters.FilterSet):
-    tipo = django_filters.CharFilter(name='tipo__slug')
-    numero = django_filters.CharFilter(name='numero', lookup_type='icontains')
-    id_from = django_filters.NumberFilter(name='id', lookup_type='gte')
-    id_to = django_filters.NumberFilter(name='id', lookup_type='lte')
+    tipo = django_filters.CharFilter(field_name='tipo__slug')
+    numero = django_filters.CharFilter(field_name='numero', lookup_expr='icontains')
+    id_from = django_filters.NumberFilter(field_name='id', lookup_expr='gte')
+    id_to = django_filters.NumberFilter(field_name='id', lookup_expr='lte')
     added_from = django_filters.DateTimeFilter(
-        name='added', lookup_type='gte')
+        field_name='added', lookup_expr='gte')
     added_to = django_filters.DateTimeFilter(
-        name='added', lookup_type='lt')
-    check = django_filters.BooleanFilter(name='check')
+        field_name='added', lookup_expr='lt')
+    check = django_filters.BooleanFilter(field_name='check')
 
     class Meta:
         model = Denuncia

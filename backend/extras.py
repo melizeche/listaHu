@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 import vobject
 import csv
 import glob
@@ -9,11 +8,13 @@ from PIL import Image
 from django.utils import timezone
 
 
-def validateNumber(number):
+def validateNumber(number: str) -> str:
+    number = number.replace('\u202d','').replace('\u202c','')
     number = number.replace(" ", "")
     number = number.replace("-", "")
     number = number.replace(")", "")
     number = number.replace("(", "")
+    number = number.replace("O", "0")
     if number.startswith('09'):
         new = "5959" + number[2:]
     elif number.startswith('+'):
@@ -99,7 +100,7 @@ def create_vcard(name, lista):
     return (card.serialize())
 
 
-def create_thumbnail(imagepath, basewidth, force=False):
+def create_thumbnail(imagepath: str, basewidth: int, force=False) -> bool:
     thumbfilename = "%s_th%s" % (path.splitext(
         imagepath)[0], path.splitext(imagepath)[1])
     if not path.exists(thumbfilename) or force:
@@ -117,7 +118,7 @@ def create_thumbnail(imagepath, basewidth, force=False):
     return False
 
 
-def thumbnail_all(directory):
+def thumbnail_all(directory: str):
     if path.isdir(directory):
         for infile in glob.glob(directory + "/*.*"):
             print((create_thumbnail(infile, 200), infile))
