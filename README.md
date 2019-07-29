@@ -20,21 +20,21 @@ CC BY-NC-SA 4.0 license.
 ### Main Requirements
 * Python 3.5+ (No longer compatible with Python 2.7, finally!)
 * PostgreSQL 9.3+
-* Django 1.8.19
+* Django 2.2+
 
 ### Other libs
 ```
-Django==1.8.19
-Pillow==5.1.0
-django-filter==0.11.0
-djangorestframework==3.1.3
-psycopg2==2.7.4
-vobject==0.9.2
-django-adminactions==1.5
-django-admin-bootstrapped==2.5.7
-django-cors-headers==1.1.0
-django-autoslug==1.9.3
-gunicorn==19.8.1
+Django==2.2.3
+django-adminactions==1.6.0
+django-autoslug==1.9.4
+django-cors-headers==3.0.2
+django-filter==2.2.0
+djangorestframework==3.10.1
+gunicorn==19.9.0
+Pillow==6.1.0
+psycopg2-binary==2.8.3
+unicodecsv==0.14.1
+vobject==0.9.6.1
 ```
 
 
@@ -62,7 +62,7 @@ PostgreSQL is recommended but you can use any database supported by Django(e.g. 
 ### Necesary packages (Ubuntu/Debian)
 
 ```
-apt-get install postgresql postgresql-contrib postgresql-server-dev libpq-dev libjpeg-dev python-dev python-pip python-virtualenv git
+sudo apt install postgresql postgresql-contrib postgresql-server-dev libpq-dev libjpeg-dev python3-dev python3-pip python3-virtualenv git
 ```
 
 ### Quick PostgreSQL configuration
@@ -76,7 +76,7 @@ apt-get install postgresql postgresql-contrib postgresql-server-dev libpq-dev li
 ## TODO
 
 - ~Python 3+ support~
-- Upgrade Django version
+- ~Upgrade Django version~
 - Unit tests
 - Documentation(APIs, Configuration Options)
 
