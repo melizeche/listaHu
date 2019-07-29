@@ -55,7 +55,7 @@ function load_posts(url) {
 
         success : function(json) {
             //console.log(json);
-        	results = json;
+        	results = json.results;
         	total = json.count;
         	cant = cant + results.length;
         	next=json.next;
