@@ -27,7 +27,7 @@ def rename(instance, filename):
 
 
 class Estadistica(models.Model):
-    nombre = models.CharField("Titulo de la Estadistica", max_length=30)
+    nombre = models.CharField("Título de la Estadística", max_length=30)
     valor = models.IntegerField(null=True, blank=True, default=0)
     otro = models.CharField(max_length=200, null=True, blank=True)
 
@@ -48,7 +48,7 @@ class Denuncia(models.Model):
     tipo = models.ForeignKey(Tipo, on_delete=models.PROTECT)
     numero = models.CharField(
         max_length=30,
-        help_text="Podes ingresar como 09XXXXXXXX, 5959XXXXXXXX o +5959XXXXXXXX",
+        help_text="Podés ingresar como 09XXXXXXXX, 5959XXXXXXXX o +5959XXXXXXXX",
     )
     screenshot = models.ImageField(
         "Captura de pantalla",
@@ -115,7 +115,7 @@ def update_stats(sender, instance, created, **kwargs):
 def thumbnail(sender, instance, created, **kwargs):
     if created:
         try:
-            img = create_thumbnail(
+            create_thumbnail(
                 settings.MEDIA_ROOT + str(instance.screenshot), THUMBNAIL_BASEWIDTH
             )
         except:
