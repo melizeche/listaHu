@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('titulo', models.CharField(max_length=30)),
-                ('slug', autoslug.fields.AutoSlugField(null=True, populate_from=b'titulo', editable=False, blank=True, unique=True)),
+                ('slug', autoslug.fields.AutoSlugField(null=True, populate_from='titulo', editable=False, blank=True, unique=True)),
                 ('desc', models.TextField(null=True, blank=True)),
             ],
         ),
