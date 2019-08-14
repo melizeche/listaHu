@@ -6,6 +6,7 @@ from io import StringIO
 from os import path
 from PIL import Image
 from django.utils import timezone
+from rest_framework.renderers import JSONRenderer
 
 
 def validateNumber(number: str) -> str:
@@ -122,3 +123,8 @@ def thumbnail_all(directory: str):
     if path.isdir(directory):
         for infile in glob.glob(directory + "/*.*"):
             print((create_thumbnail(infile, 200), infile))
+
+
+class PrettyJsonRenderer(JSONRenderer):
+    def get_indent(self, accepted_media_type, renderer_context):
+        return 2

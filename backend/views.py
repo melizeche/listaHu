@@ -30,6 +30,11 @@ class DenunciaViewSet(viewsets.ModelViewSet):
     serializer_class = DenunciaSerializer
     filter_class = DenunciaFilter
 
+    def get_renderer_context(self):
+        context = super().get_renderer_context()
+        context['indent'] = 2
+        return context
+
 
 class ListaViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
