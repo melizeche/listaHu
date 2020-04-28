@@ -5,8 +5,8 @@ django-cors-headers==3.0.2
 django-filter==2.2.0
 djangorestframework==3.10.1
 gunicorn==19.9.0
-Pillow==6.2.0
-psycopg2-binary==2.8.3
+Pillow==7.1.2
+psycopg2-binary==2.8.4
 unicodecsv==0.14.1
 vobject==0.9.6.1
 black
