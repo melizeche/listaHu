@@ -3,7 +3,7 @@ django-adminactions==1.6.0
 django-autoslug==1.9.4
 django-cors-headers==3.0.2
 django-filter==2.2.0
-djangorestframework==3.10.1
+djangorestframework==3.11.2
 gunicorn==19.9.0
 Pillow==7.1.2
 psycopg2-binary==2.8.4
