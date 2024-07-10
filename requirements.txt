@@ -12,3 +12,4 @@ vobject==0.9.6.1
 black
 mypy
 mypy-extensions
+zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
