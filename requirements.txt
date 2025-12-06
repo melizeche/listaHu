@@ -1,4 +1,4 @@
-Django==2.2.28
+Django==4.2.27
 django-adminactions==1.6.0
 django-autoslug==1.9.4
 django-cors-headers==3.0.2
@@ -12,3 +12,4 @@ vobject==0.9.6.1
 black
 mypy
 mypy-extensions
+sqlparse>=0.5.4 # not directly required, pinned by Snyk to avoid a vulnerability
