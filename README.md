@@ -77,8 +77,33 @@ sudo apt install postgresql postgresql-contrib postgresql-server-dev libpq-dev l
 
 - ~Python 3+ support~
 - ~Upgrade Django version~
-- Unit tests
+- ~Unit tests~
 - Documentation(APIs, Configuration Options)
+
+## Tests
+
+The suite ships with its own settings module, so it runs without a
+`conf/settings.py` and without a database server (SQLite is used by default):
+
+```
+./manage.py test --settings=conf.settings_test
+```
+
+A few endpoints rely on PostgreSQL-only features (`DISTINCT ON`): the download
+of the full/no-spam vCards and the `/api/v1/numeros/` endpoint. Those tests are
+skipped automatically on SQLite. To run them too, point the suite at a
+PostgreSQL server:
+
+```
+LISTAHU_TEST_DB=postgres ./manage.py test --settings=conf.settings_test
+```
+
+The connection can be tuned with `LISTAHU_TEST_DB_NAME`, `LISTAHU_TEST_DB_USER`,
+`LISTAHU_TEST_DB_PASSWORD`, `LISTAHU_TEST_DB_HOST` and `LISTAHU_TEST_DB_PORT`.
+
+Tests live in `backend/tests/`, one module per layer (`test_models.py`,
+`test_forms.py`, `test_filters.py`, `test_serializers.py`, `test_views.py`,
+`test_api.py`, `test_admin.py` and the shared `helpers.py`).
 
 ## Contributing
 
