@@ -6,7 +6,7 @@ django-filter==2.4.0
 djangorestframework==3.11.2
 gunicorn==23.0.0
 Pillow==9.3.0
-psycopg2-binary==2.8.4
+psycopg2-binary==2.8.6
 unicodecsv==0.14.1
 vobject==0.9.6.1
 black

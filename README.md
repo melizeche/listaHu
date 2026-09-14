@@ -1,4 +1,6 @@
 # ListaHũ
+
+[![Tests](https://github.com/melizeche/listaHu/actions/workflows/tests.yml/badge.svg)](https://github.com/melizeche/listaHu/actions/workflows/tests.yml)
 Lista Hũ is a project that aims to create a crowdsourced database of sms spammers and blackmailers, so the numbers can be blocked in the future.
 
 Lista Hũ has an RESTful API to query the database and the dataset is released under the
@@ -18,21 +20,29 @@ CC BY-NC-SA 4.0 license.
 ## Requirements
 
 ### Main Requirements
-* Python 3.5+ (No longer compatible with Python 2.7, finally!)
+* Python 3.5 - 3.9 (No longer compatible with Python 2.7, finally!)
 * PostgreSQL 9.3+
 * Django 2.2+
 
+Django 2.2 supports Python up to 3.9, and the PostgreSQL driver caps the version
+too: `psycopg2-binary` 2.8.6 is the last release that works with Django 2.2
+(2.9 broke it, see [#32800](https://code.djangoproject.com/ticket/32800)) and it
+only ships wheels up to CPython 3.9. On a newer Python the rest of the project
+still runs, but PostgreSQL does not.
+
 ### Other libs
+See [requirements.txt](requirements.txt) for the pinned versions:
+
 ```
-Django==2.2.3
+Django==2.2.28
 django-adminactions==1.6.0
 django-autoslug==1.9.4
 django-cors-headers==3.0.2
-django-filter==2.2.0
-djangorestframework==3.10.1
-gunicorn==19.9.0
-Pillow==6.1.0
-psycopg2-binary==2.8.3
+django-filter==2.4.0
+djangorestframework==3.11.2
+gunicorn==23.0.0
+Pillow==9.3.0
+psycopg2-binary==2.8.6
 unicodecsv==0.14.1
 vobject==0.9.6.1
 ```
@@ -77,8 +87,36 @@ sudo apt install postgresql postgresql-contrib postgresql-server-dev libpq-dev l
 
 - ~Python 3+ support~
 - ~Upgrade Django version~
-- Unit tests
+- ~Unit tests~
 - Documentation(APIs, Configuration Options)
+
+## Tests
+
+The suite ships with its own settings module, so it runs without a
+`conf/settings.py` and without a database server (SQLite is used by default):
+
+```
+./manage.py test --settings=conf.settings_test
+```
+
+A few endpoints rely on PostgreSQL-only features (`DISTINCT ON`): the download
+of the full/no-spam vCards and the `/api/v1/numeros/` endpoint. Those tests are
+skipped automatically on SQLite. To run them too, point the suite at a
+PostgreSQL server:
+
+```
+LISTAHU_TEST_DB=postgres ./manage.py test --settings=conf.settings_test
+```
+
+The connection can be tuned with `LISTAHU_TEST_DB_NAME`, `LISTAHU_TEST_DB_USER`,
+`LISTAHU_TEST_DB_PASSWORD`, `LISTAHU_TEST_DB_HOST` and `LISTAHU_TEST_DB_PORT`.
+
+Tests live in `backend/tests/`, one module per layer (`test_models.py`,
+`test_forms.py`, `test_filters.py`, `test_serializers.py`, `test_views.py`,
+`test_api.py`, `test_admin.py` and the shared `helpers.py`).
+
+Both variants run on every push and pull request via GitHub Actions
+(`.github/workflows/tests.yml`).
 
 ## Contributing
 
