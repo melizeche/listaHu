@@ -1,0 +1,70 @@
+name: Tests
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  sqlite:
+    name: SQLite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Django 2.2 supports Python 3.5-3.9, and psycopg2-binary 2.8.6 (the last
+      # release compatible with Django 2.2) only publishes wheels up to cp39.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tests
+        run: python manage.py test --settings=conf.settings_test
+
+  postgres:
+    name: PostgreSQL
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: listahu
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Unlike the SQLite job this one also exercises the DISTINCT ON code
+      # paths: the vCard downloads and the /api/v1/numeros/ endpoint.
+      - name: Run tests
+        env:
+          LISTAHU_TEST_DB: postgres
+          LISTAHU_TEST_DB_NAME: listahu
+          LISTAHU_TEST_DB_USER: postgres
+          LISTAHU_TEST_DB_PASSWORD: postgres
+          LISTAHU_TEST_DB_HOST: localhost
+          LISTAHU_TEST_DB_PORT: 5432
+        run: python manage.py test --settings=conf.settings_test
