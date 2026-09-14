@@ -189,15 +189,14 @@ class ApiRootTests(TestCase):
         payload = self.client.get(self.url, HTTP_ACCEPT="application/json").json()
         self.assertEqual(set(payload), {"lista", "denuncias", "numeros"})
 
-    @unittest.expectedFailure
     def test_each_endpoint_is_advertised_with_its_own_url(self):
-        """KNOWN BUG: the three endpoints collide on a single route name.
+        """The three endpoints each get their own route name.
 
         All three viewsets expose ``queryset = Denuncia.objects...``, so the
-        router derives the same basename (``denuncia``) for each registration
-        and ``reverse()`` resolves every one of them to the last one declared.
-        The index therefore links to ``/api/v1/numeros/`` three times.  Passing
-        an explicit ``basename`` to each ``router.register()`` call fixes it.
+        router used to derive the same basename (``denuncia``) for each
+        registration and ``reverse()`` resolved every one of them to the last
+        one declared -- the index linked to ``/api/v1/numeros/`` three times.
+        ``conf.urls`` now passes an explicit ``basename`` per registration.
         """
         self.login_as_admin()
         payload = self.client.get(self.url, HTTP_ACCEPT="application/json").json()

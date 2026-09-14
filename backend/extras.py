@@ -109,7 +109,7 @@ def create_thumbnail(imagepath: str, basewidth: int, force=False) -> bool:
             img = Image.open(imagepath)
             wpercent = (basewidth / float(img.size[0]))
             hsize = int((float(img.size[1]) * float(wpercent)))
-            img = img.resize((basewidth, hsize), Image.ANTIALIAS)
+            img = img.resize((basewidth, hsize), Image.Resampling.LANCZOS)
             thumbfilename = "%s_th%s" % (path.splitext(
                 imagepath)[0], path.splitext(imagepath)[1])
             img.save(thumbfilename)

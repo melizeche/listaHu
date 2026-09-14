@@ -49,6 +49,10 @@ MIDDLEWARE = (
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 )
 
+# The models predate the setting, so keep the implicit AutoField primary keys
+# instead of migrating every table to BigAutoField.
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
 ROOT_URLCONF = "conf.urls"
 
 WSGI_APPLICATION = "conf.wsgi.application"
@@ -88,7 +92,6 @@ else:
 LANGUAGE_CODE = "es"
 TIME_ZONE = "America/Asuncion"
 USE_I18N = True
-USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = "/static/"
@@ -111,7 +114,7 @@ REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_URLS_REGEX = r"/api/v1/denuncias.*$"
 CORS_ALLOW_METHODS = ("GET",)
 

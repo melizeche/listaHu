@@ -17,7 +17,7 @@ class AdminRegistrationTests(TestCase):
             self.assertIn(model, site._registry)
 
     def test_moderators_can_filter_the_report_list(self):
-        self.assertEqual(DenunciaAdmin.list_filter, ("tipo", "check", "activo"))
+        self.assertEqual(DenunciaAdmin.list_filter, ("tipo", "checked", "activo"))
 
     def test_moderators_can_search_reports(self):
         self.assertIn("numero", DenunciaAdmin.search_fields)

@@ -15,8 +15,8 @@ class DenunciaFilter(django_filters.FilterSet):
         field_name='added', lookup_expr='gte')
     added_to = django_filters.DateTimeFilter(
         field_name='added', lookup_expr='lt')
-    check = django_filters.BooleanFilter(field_name='check')
+    check = django_filters.BooleanFilter(field_name='checked')
 
     class Meta:
         model = Denuncia
-        fields = ('tipo', 'numero', 'id', 'added', 'check')
+        fields = ('tipo', 'numero', 'id', 'added')

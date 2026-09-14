@@ -61,7 +61,9 @@ class Denuncia(models.Model):
         blank=True,
         help_text="Completar especialmente si fue una llamada",
     )
-    check = models.NullBooleanField(null=True, default=False)
+    checked = models.BooleanField(
+        "check", db_column="check", null=True, default=False
+    )
     votsi = models.IntegerField(null=True, blank=True, default=0)
     votno = models.IntegerField(null=True, blank=True, default=0)
     activo = models.BooleanField(default=True)

@@ -3,7 +3,7 @@ import time
 
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.template import RequestContext, loader
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, Group
 from django.contrib import messages
 from django.db.models import Count
@@ -28,7 +28,7 @@ class DenunciaViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Denuncia.objects.filter(activo=True).order_by("-added")
     serializer_class = DenunciaSerializer
-    filter_class = DenunciaFilter
+    filterset_class = DenunciaFilter
 
     def get_renderer_context(self):
         context = super().get_renderer_context()
@@ -40,7 +40,7 @@ class ListaViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Denuncia.objects.filter(activo=True)
     serializer_class = ListaSerializer
-    filter_class = DenunciaFilter
+    filterset_class = DenunciaFilter
 
     def list(self, request):
         query = DenunciaFilter(
@@ -54,7 +54,7 @@ class ListaUnicaViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Denuncia.objects.filter(activo=True)
     serializer_class = ListaUnicaSerializer
-    filter_class = DenunciaFilter
+    filterset_class = DenunciaFilter
 
     def list(self, request):
         raw_queryset = Denuncia.objects.raw(

@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('numero', models.CharField(help_text=b'Podes ingresar como 09XXXXXXXX, 5959XXXXXXXX o +5959XXXXXXXX', max_length=30)),
                 ('screenshot', models.ImageField(help_text=b'Si fue una llamada hacer captura del registro de llamadas', upload_to=backend.models.rename, verbose_name=b'Captura de pantalla')),
                 ('desc', models.TextField(help_text=b'Completar especialmente si fue una llamada', null=True, verbose_name=b'Descripci\xc3\xb3n o comentarios al respecto', blank=True)),
-                ('check', models.NullBooleanField(default=False)),
+                ('check', models.BooleanField(default=False, null=True)),
                 ('votsi', models.IntegerField(default=0, null=True, blank=True)),
                 ('votno', models.IntegerField(default=0, null=True, blank=True)),
                 ('activo', models.BooleanField(default=True)),

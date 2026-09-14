@@ -80,7 +80,7 @@ class DenunciaSaveTests(TestCase):
         denuncia = make_denuncia()
         self.assertEqual(denuncia.votsi, 0)
         self.assertEqual(denuncia.votno, 0)
-        self.assertFalse(denuncia.check)
+        self.assertFalse(denuncia.checked)
         self.assertIsNotNone(denuncia.added)
 
     def test_screenshot_is_stored_under_the_denuncias_folder(self):

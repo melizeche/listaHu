@@ -63,15 +63,18 @@ class DenunciaFilterTests(TestCase):
         today = timezone.localtime(timezone.now()).strftime("%Y-%m-%d")
         self.assertEqual(len(self.filtered({"added_from": today})), 2)
 
+    def test_iso_8601_input_is_accepted(self):
+        # Django also cleans ISO-8601 timestamps (with a "T" and a UTC offset)
+        # on top of the locale's ``DATETIME_INPUT_FORMATS``, so the exclusive
+        # ``added_to`` bound really does apply here.
+        self.assertEqual(self.filtered({"added_to": self.spam.added.isoformat()}), [])
+
     def test_unparseable_date_is_silently_ignored(self):
         # django-filter drops values the form cannot clean instead of raising,
-        # so an ISO-8601 timestamp (with "T" and a UTC offset) is *not* an
-        # error -- it simply returns the unfiltered queryset.
-        self.assertEqual(
-            len(self.filtered({"added_to": self.spam.added.isoformat()})), 2
-        )
+        # so a bogus timestamp simply returns the unfiltered queryset.
+        self.assertEqual(len(self.filtered({"added_to": "no-es-una-fecha"})), 2)
 
     def test_filter_by_check_flag(self):
-        Denuncia.objects.filter(pk=self.spam.pk).update(check=True)
+        Denuncia.objects.filter(pk=self.spam.pk).update(checked=True)
         self.assertEqual(self.filtered({"check": "true"}), [self.spam])
         self.assertEqual(self.filtered({"check": "false"}), [self.estafa])

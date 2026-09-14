@@ -8,8 +8,8 @@ actions.add_to_site(site)
 
 
 class DenunciaAdmin(admin.ModelAdmin):
-    list_display = ("numero", "tipo", "check", "added", "votsi", "votno", "activo")
-    list_filter = ("tipo", "check", "activo")
+    list_display = ("numero", "tipo", "checked", "added", "votsi", "votno", "activo")
+    list_filter = ("tipo", "checked", "activo")
     search_fields = ("numero", "added", "desc")
 
 
